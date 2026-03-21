@@ -12,411 +12,360 @@
     h2 { text-align:center; color:var(--accent); font-size:1.3em; margin-bottom:3px; }
     .subtitle { text-align:center; color:#666; font-size:0.76em; margin-bottom:14px; }
 
-    /* IST Master Clock */
     .master-clock { text-align:center; margin-bottom:18px; }
-    .ist-time { font-size:2.8em; font-weight:bold; color:var(--accent); letter-spacing:2px; }
-    .ist-date { font-size:0.82em; color:#888; margin-top:2px; }
+    .ist-time  { font-size:2.8em; font-weight:bold; color:var(--accent); letter-spacing:2px; }
+    .ist-date  { font-size:0.82em; color:#888; margin-top:2px; }
     .ist-label { font-size:0.72em; color:#555; text-transform:uppercase; letter-spacing:2px; }
 
-    /* Exchange grid */
-    .ex-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-               gap:12px; margin-bottom:16px; }
+    .ex-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; margin-bottom:16px; }
     .ex-card { background:#141414; border-radius:10px; padding:14px;
-               border:1px solid #222; transition:all 0.3s; position:relative; overflow:hidden; }
-    .ex-card::before { content:''; position:absolute; top:0; left:0; width:4px;
-                       height:100%; background:var(--card-accent); }
-    .ex-card.open   { border-color:#51cf6633; --card-accent:#51cf66; }
-    .ex-card.closed { border-color:#ff6b6b22; --card-accent:#ff6b6b; }
-    .ex-card.pre    { border-color:#74c0fc33; --card-accent:#74c0fc; }
-    .ex-card.soon-open  { border-color:#FFD70033; --card-accent:#FFD700; }
-    .ex-card.soon-close { border-color:#ff9a0033; --card-accent:#ff9a00; }
+               border:2px solid #222; position:relative; overflow:hidden; }
+    .ex-card.open       { border-color:#51cf66; }
+    .ex-card.closed     { border-color:#2a2a2a; }
+    .ex-card.pre        { border-color:#74c0fc; }
+    .ex-card.soon-open  { border-color:#FFD700; }
+    .ex-card.soon-close { border-color:#ff9a00; }
 
-    .ex-header { display:flex; align-items:center; justify-content:space-between;
-                 margin-bottom:8px; }
-    .ex-name { font-size:0.95em; font-weight:bold; }
-    .ex-flag { font-size:1.3em; margin-right:6px; }
-    .status-badge { padding:3px 10px; border-radius:10px; font-size:0.72em;
-                    font-weight:bold; white-space:nowrap; }
+    .ex-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+    .ex-name   { font-size:0.95em; font-weight:bold; }
+    .status-badge { padding:3px 10px; border-radius:10px; font-size:0.72em; font-weight:bold; }
     .badge-open       { background:#51cf6622; color:#51cf66; border:1px solid #51cf66; }
     .badge-closed     { background:#ff6b6b22; color:#ff6b6b; border:1px solid #ff6b6b; }
     .badge-pre        { background:#74c0fc22; color:#74c0fc; border:1px solid #74c0fc; }
     .badge-soon-open  { background:#FFD70022; color:#FFD700; border:1px solid #FFD700; animation:pulse 1.5s infinite; }
     .badge-soon-close { background:#ff9a0022; color:#ff9a00; border:1px solid #ff9a00; animation:pulse 1.5s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
 
-    .ex-times { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:8px; }
+    .ex-times  { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:8px; }
     .ex-time-block { background:#0d0d0d; border-radius:6px; padding:7px 10px; }
-    .ex-time-label { font-size:0.65em; color:#666; text-transform:uppercase;
-                     letter-spacing:1px; margin-bottom:2px; }
+    .ex-time-label { font-size:0.65em; color:#666; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px; }
     .ex-time-val   { font-size:1.05em; font-weight:bold; }
-    .ex-time-local { font-size:0.7em; color:#555; margin-top:1px; }
+    .ex-time-sub   { font-size:0.68em; color:#555; margin-top:1px; }
 
-    .ex-hours { margin-top:8px; font-size:0.74em; color:#666;
-                display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px; }
+    .ex-hours  { margin-top:8px; font-size:0.73em; color:#666; }
     .ex-hours span { color:#aaa; }
 
     .countdown { margin-top:8px; padding:7px 10px; background:#0d0d0d;
                  border-radius:6px; font-size:0.78em; text-align:center; }
-    .countdown .cd-label { color:#666; font-size:0.85em; }
-    .countdown .cd-val   { font-size:1.1em; font-weight:bold; margin-top:2px; }
+    .cd-label { color:#666; font-size:0.85em; }
+    .cd-val   { font-size:1.15em; font-weight:bold; margin-top:2px; }
 
-    /* Progress bar for session */
-    .session-bar { margin-top:8px; height:4px; background:#1a1a1a; border-radius:2px; overflow:hidden; }
-    .session-fill { height:100%; border-radius:2px; transition:width 1s; }
-    .session-fill.open-fill   { background:linear-gradient(to right,#51cf66,#2f9e44); }
-    .session-fill.closed-fill { background:#2a2a2a; }
+    .session-bar  { margin-top:8px; height:5px; background:#1a1a1a; border-radius:3px; overflow:hidden; }
+    .session-fill { height:100%; border-radius:3px; transition:width 1s; }
+    .fill-open   { background:linear-gradient(to right,#51cf66,#2f9e44); }
+    .fill-closed { background:#252525; }
+    .fill-soon   { background:linear-gradient(to right,#ff9a00,#e67700); }
 
-    /* Market sessions overview */
-    .sessions-bar { background:#111; border:1px solid #1e1e1e; border-radius:8px;
-                    padding:12px 16px; margin-bottom:16px; }
-    .sessions-title { font-size:0.75em; color:#666; text-transform:uppercase;
-                      letter-spacing:1px; margin-bottom:10px; }
-    .timeline { position:relative; height:32px; background:#1a1a1a; border-radius:4px;
-                overflow:hidden; margin-bottom:6px; }
-    .tl-segment { position:absolute; height:100%; display:flex; align-items:center;
-                  justify-content:center; font-size:0.68em; font-weight:bold;
-                  transition:all 0.5s; }
-    .tl-now { position:absolute; width:2px; background:#FFD700; height:100%;
-              z-index:10; top:0; }
-    .tl-labels { display:flex; justify-content:space-between; font-size:0.65em; color:#555; }
-    .tl-legend { display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; }
-    .tl-leg-item { display:flex; align-items:center; gap:5px; font-size:0.72em; color:#888; }
-    .tl-leg-dot  { width:10px; height:10px; border-radius:2px; }
+    .sessions-bar   { background:#111; border:1px solid #1e1e1e; border-radius:8px; padding:12px 16px; margin-bottom:16px; }
+    .sessions-title { font-size:0.75em; color:#666; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
+    .timeline       { position:relative; height:34px; background:#1a1a1a; border-radius:4px; overflow:hidden; margin-bottom:6px; }
+    .tl-segment     { position:absolute; height:100%; display:flex; align-items:center;
+                      justify-content:center; font-size:0.7em; }
+    .tl-now         { position:absolute; width:2px; background:#FFD700; height:100%; z-index:10; top:0; }
+    .tl-labels      { display:flex; justify-content:space-between; font-size:0.65em; color:#555; }
+    .tl-legend      { display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; }
+    .tl-leg-item    { display:flex; align-items:center; gap:5px; font-size:0.72em; color:#888; }
+    .tl-leg-dot     { width:10px; height:10px; border-radius:2px; flex-shrink:0; }
 
-    .status-bar { text-align:center; color:#555; font-size:0.72em; margin-top:10px; }
-    @media(max-width:600px){
-      .ist-time { font-size:2em; }
-      .ex-grid { grid-template-columns:1fr; }
-    }
+    .status-bar { text-align:center; color:#444; font-size:0.72em; margin-top:10px; }
+    @media(max-width:600px){ .ist-time{font-size:2em;} .ex-grid{grid-template-columns:1fr;} }
   </style>
 </head>
 <body>
 <div class="container">
-
   <h2>🌐 Global Exchange Clock</h2>
-  <div class="subtitle">Live session status for major bullion & commodity exchanges</div>
+  <div class="subtitle">Live session status — all times in IST</div>
 
-  <!-- Master IST Clock -->
   <div class="master-clock">
-    <div class="ist-label">India Standard Time (IST)</div>
+    <div class="ist-label">India Standard Time (IST / UTC+5:30)</div>
     <div class="ist-time" id="ist-time">--:--:--</div>
     <div class="ist-date" id="ist-date">--</div>
   </div>
 
-  <!-- 24hr Timeline -->
   <div class="sessions-bar">
-    <div class="sessions-title">📅 Today's Exchange Sessions (IST Timeline — 24hr)</div>
+    <div class="sessions-title">📅 Today's Sessions — IST 24hr Timeline</div>
     <div class="timeline" id="timeline">
       <div class="tl-now" id="tl-now"></div>
     </div>
     <div class="tl-labels">
-      <span>12 AM</span><span>3 AM</span><span>6 AM</span><span>9 AM</span>
-      <span>12 PM</span><span>3 PM</span><span>6 PM</span><span>9 PM</span><span>12 AM</span>
+      <span>12AM</span><span>3AM</span><span>6AM</span><span>9AM</span>
+      <span>12PM</span><span>3PM</span><span>6PM</span><span>9PM</span><span>12AM</span>
     </div>
     <div class="tl-legend" id="tl-legend"></div>
   </div>
 
-  <!-- Exchange Cards -->
   <div class="ex-grid" id="ex-grid"></div>
-
-  <div class="status-bar" id="status-bar">🕐 Updating every second...</div>
-
+  <div class="status-bar" id="status-bar">Updates every second</div>
 </div>
+
 <script>
-// ── Exchange definitions (all times in IST) ───────────────────────────────────
-// Sessions: [open_hour, open_min, close_hour, close_min] in IST
-// overnight: true = session crosses midnight
-const EXCHANGES = [
+// ── Exchange data ─────────────────────────────────────────────────────────────
+// sessions: array of {openH, openM, closeH, closeM}
+// closeH can be > 23 for overnight (e.g. closeH=27 = 3AM next day)
+const EX = [
   {
     id:'mcx', flag:'🇮🇳', name:'MCX India',
-    location:'Mumbai, India', tz:'Asia/Kolkata', tzLabel:'IST',
-    color:'#2f9e44',
-    sessions:[
-      { label:'Morning',  ist:[9,0,  23,30], overnight:false },
-    ],
-    pre:[8,45], note:'Commodity Futures — Gold, Silver, Crude'
+    loc:'Mumbai · IST', tz:'Asia/Kolkata', tzLabel:'IST', color:'#2f9e44',
+    note:'Gold, Silver, Crude Futures',
+    sessions:[{openH:9,openM:0,closeH:23,closeM:30}],
+    preH:8, preM:45
   },
   {
     id:'nse', flag:'🇮🇳', name:'NSE Commodity',
-    location:'Mumbai, India', tz:'Asia/Kolkata', tzLabel:'IST',
-    color:'#1971c2',
-    sessions:[
-      { label:'Session', ist:[9,0, 23,30], overnight:false }
-    ],
-    pre:[8,45], note:'NSE Commodity Derivatives — Gold, Silver'
+    loc:'Mumbai · IST', tz:'Asia/Kolkata', tzLabel:'IST', color:'#1971c2',
+    note:'NSE Commodity Derivatives',
+    sessions:[{openH:9,openM:0,closeH:23,closeM:30}],
+    preH:8, preM:45
   },
   {
     id:'comex', flag:'🇺🇸', name:'COMEX / CME',
-    location:'New York, USA', tz:'America/New_York', tzLabel:'ET',
-    color:'#e03131',
+    loc:'New York · ET', tz:'America/New_York', tzLabel:'ET', color:'#e03131',
+    note:'Gold (GC), Silver (SI) Globex',
+    // Globex: Sun 6PM ET to Fri 5PM ET
+    // In IST: opens 4:30 AM, runs overnight, closes 3:00 AM next day
+    // We model as: open 0:00 to 3:00 AND 4:30 to 23:59 (split at midnight)
     sessions:[
-      // Globex: 6 PM ET Sun – 5 PM ET Fri = 4:30 AM IST – 3:00 AM IST+1
-      { label:'Globex', ist:[4,30, 27,0], overnight:true },  // 27:00 = 3:00 AM next day
+      {openH:0, openM:0,  closeH:3,  closeM:0},
+      {openH:4, openM:30, closeH:23, closeM:59}
     ],
-    pre:[4,15], note:'Gold (GC), Silver (SI) Futures'
+    preH:4, preM:15
   },
   {
     id:'lbma', flag:'🇬🇧', name:'LBMA London',
-    location:'London, UK', tz:'Europe/London', tzLabel:'GMT/BST',
-    color:'#9c36b5',
-    sessions:[
-      { label:'OTC', ist:[13,30, 21,30], overnight:false }
-    ],
-    pre:[13,15], note:'Gold & Silver Spot — AM/PM Fix'
+    loc:'London · GMT/BST', tz:'Europe/London', tzLabel:'GMT', color:'#9c36b5',
+    note:'Gold & Silver Spot OTC',
+    sessions:[{openH:13,openM:30,closeH:21,closeM:30}],
+    preH:13, preM:15
   },
   {
     id:'sge', flag:'🇨🇳', name:'SGE Shanghai',
-    location:'Shanghai, China', tz:'Asia/Shanghai', tzLabel:'CST',
-    color:'#f03e3e',
+    loc:'Shanghai · CST', tz:'Asia/Shanghai', tzLabel:'CST', color:'#f03e3e',
+    note:'Shanghai Gold Exchange',
     sessions:[
-      { label:'Morning', ist:[6,30,  11,30], overnight:false },
-      { label:'Evening', ist:[13,0,  16,0],  overnight:false },
-      { label:'Night',   ist:[21,0,  23,30], overnight:false },
+      {openH:6,  openM:30, closeH:11, closeM:30},
+      {openH:13, openM:0,  closeH:16, closeM:0},
+      {openH:21, openM:0,  closeH:23, closeM:30}
     ],
-    pre:[6,15], note:'Shanghai Gold Exchange'
+    preH:6, preM:15
   },
   {
     id:'tocom', flag:'🇯🇵', name:'TOCOM Tokyo',
-    location:'Tokyo, Japan', tz:'Asia/Tokyo', tzLabel:'JST',
-    color:'#f76707',
+    loc:'Tokyo · JST', tz:'Asia/Tokyo', tzLabel:'JST', color:'#f76707',
+    note:'Tokyo Commodity Exchange',
     sessions:[
-      { label:'Day',   ist:[5,45,  14,30], overnight:false },
-      { label:'Night', ist:[16,30, 23,30], overnight:false },
+      {openH:5,  openM:45, closeH:14, closeM:30},
+      {openH:16, openM:30, closeH:23, closeM:30}
     ],
-    pre:[5,30], note:'Tokyo Commodity Exchange'
+    preH:5, preM:30
   },
   {
     id:'dgcx', flag:'🇦🇪', name:'DGCX Dubai',
-    location:'Dubai, UAE', tz:'Asia/Dubai', tzLabel:'GST',
-    color:'#1098ad',
-    sessions:[
-      { label:'Session', ist:[11,30, 23,30], overnight:false }
-    ],
-    pre:[11,15], note:'Dubai Gold & Commodities Exchange'
+    loc:'Dubai · GST', tz:'Asia/Dubai', tzLabel:'GST', color:'#1098ad',
+    note:'Dubai Gold & Commodities',
+    sessions:[{openH:11,openM:30,closeH:23,closeM:30}],
+    preH:11, preM:15
   },
   {
     id:'ibja', flag:'🇮🇳', name:'IBJA Spot Rate',
-    location:'Mumbai, India', tz:'Asia/Kolkata', tzLabel:'IST',
-    color:'#FFD700',
+    loc:'Mumbai · IST', tz:'Asia/Kolkata', tzLabel:'IST', color:'#FFD700',
+    note:'India Bullion & Jewellers Assoc.',
     sessions:[
-      { label:'AM Fix', ist:[11,30, 12,0],  overnight:false },
-      { label:'PM Fix', ist:[17,0,  17,30], overnight:false },
+      {openH:11,openM:30,closeH:12,closeM:0},
+      {openH:17,openM:0, closeH:17,closeM:30}
     ],
-    pre:[11,15], note:'India Bullion & Jewellers Association Spot'
-  },
+    preH:11, preM:15
+  }
 ];
 
-function getISTMinutes(){
-  const now = new Date();
-  const ist = new Date(now.toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
-  return ist.getHours()*60 + ist.getMinutes() + ist.getSeconds()/60;
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function nowIST(){
+  const d = new Date();
+  const ist = new Date(d.toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
+  return {h: ist.getHours(), m: ist.getMinutes(), s: ist.getSeconds(),
+          totalMin: ist.getHours()*60 + ist.getMinutes() + ist.getSeconds()/60};
 }
 
-function getTimeInTZ(tz){
+function timeInTZ(tz){
   return new Date().toLocaleString('en-US',{
     timeZone:tz, hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
   });
 }
-
-function getDateInTZ(tz){
+function dateInTZ(tz){
   return new Date().toLocaleString('en-IN',{
     timeZone:tz, weekday:'short', day:'numeric', month:'short'
   });
 }
-
-function fmtCountdown(diffMins){
-  if(diffMins<=0) return 'Now';
-  const h = Math.floor(Math.abs(diffMins)/60);
-  const m = Math.floor(Math.abs(diffMins)%60);
-  return (h>0?h+'h ':'')+m+'m';
+function fmtCD(mins){
+  if(mins <= 0) return 'Now';
+  const h = Math.floor(mins/60), m = Math.floor(mins%60), s = Math.floor((mins*60)%60);
+  return (h>0?h+'h ':'') + m+'m ' + s+'s';
 }
 
+// ── Status logic ──────────────────────────────────────────────────────────────
 function getStatus(ex, nowMin){
-  let status='closed', nextEvent=null, nextMins=0, sessionPct=0;
-  const WARN=30; // minutes warning
+  const WARN = 30;
+  let status = 'closed', pct = 0, cdMins = 0, cdLabel = 'Opens in';
 
-  for(const sess of ex.sessions){
-    let [oh,om,ch,cm] = [...sess.ist[0,1],sess.ist[2],sess.ist[3]];
-    let openMin = sess.ist[0]*60+sess.ist[1];
-    let closeMin = sess.ist[2]*60+sess.ist[3];
-
-    // Handle overnight (closeMin > 24*60)
-    if(sess.overnight){
-      // e.g. opens 4:30, closes 27:00 (= 3:00 AM next day)
-      // if nowMin >= openMin OR nowMin < closeMin-1440
-      const adjClose = closeMin - 1440;
-      if(nowMin >= openMin || nowMin < adjClose){
-        status='open';
-        sessionPct = nowMin>=openMin
-          ? Math.min(100,((nowMin-openMin)/(1440-openMin+adjClose))*100)
-          : Math.min(100,((1440-openMin+nowMin)/(1440-openMin+adjClose))*100);
-        const timeToClose = nowMin>=openMin ? (1440-nowMin+adjClose) : (adjClose-nowMin);
-        if(timeToClose<=WARN){ status='soon-close'; nextMins=timeToClose; }
-        break;
-      }
-    } else {
-      if(nowMin>=openMin && nowMin<closeMin){
-        status='open';
-        sessionPct=Math.min(100,((nowMin-openMin)/(closeMin-openMin))*100);
-        const timeToClose=closeMin-nowMin;
-        if(timeToClose<=WARN){ status='soon-close'; nextMins=timeToClose; }
-        break;
-      }
+  // Check if in any session
+  for(const s of ex.sessions){
+    const o = s.openH*60 + s.openM;
+    const c = s.closeH*60 + s.closeM;
+    if(nowMin >= o && nowMin < c){
+      status = 'open';
+      pct = Math.min(100, ((nowMin-o)/(c-o))*100);
+      cdMins = c - nowMin;
+      cdLabel = 'Closes in';
+      if(cdMins <= WARN) status = 'soon-close';
+      break;
     }
   }
 
-  if(status==='closed'||status==='soon-close'){
-    // Check pre-open
-    const preMin=ex.pre[0]*60+ex.pre[1];
-    const firstOpen=ex.sessions[0].ist[0]*60+ex.sessions[0].ist[1];
-    if(nowMin>=preMin&&nowMin<firstOpen){ status='pre'; }
-  }
-
-  // Find next open/close countdown
-  if(status==='closed'||status==='pre'){
-    let minDiff=9999;
-    for(const sess of ex.sessions){
-      const openMin=sess.ist[0]*60+sess.ist[1];
-      let diff=openMin-nowMin;
-      if(diff<0) diff+=1440;
-      if(diff<minDiff){ minDiff=diff; }
+  // Pre-open check
+  if(status === 'closed'){
+    const preMin = ex.preH*60 + ex.preM;
+    const firstOpen = ex.sessions[0].openH*60 + ex.sessions[0].openM;
+    if(nowMin >= preMin && nowMin < firstOpen){
+      status = 'pre';
+      cdMins = firstOpen - nowMin;
+      cdLabel = 'Opens in';
     }
-    nextMins=minDiff;
-    nextEvent='opens';
-  } else if(status==='open'||status==='soon-close'){
-    nextEvent='closes';
   }
 
-  return {status, nextEvent, nextMins, sessionPct};
+  // Find next open countdown
+  if(status === 'closed'){
+    let minDiff = 9999;
+    for(const s of ex.sessions){
+      const o = s.openH*60 + s.openM;
+      let diff = o - nowMin;
+      if(diff < 0) diff += 1440;
+      if(diff < minDiff) minDiff = diff;
+    }
+    cdMins = minDiff;
+    cdLabel = 'Opens in';
+  }
+
+  return {status, pct, cdMins, cdLabel};
 }
 
+// ── Render cards ──────────────────────────────────────────────────────────────
 function renderCards(){
-  const nowMin=getISTMinutes();
-  const grid=document.getElementById('ex-grid');
+  const {totalMin} = nowIST();
+  const grid = document.getElementById('ex-grid');
 
-  EXCHANGES.forEach(ex=>{
-    const {status,nextEvent,nextMins,sessionPct}=getStatus(ex,nowMin);
-    const localTime=getTimeInTZ(ex.tz);
-    const localDate=getDateInTZ(ex.tz);
-    const istTime=getTimeInTZ('Asia/Kolkata');
+  EX.forEach(ex => {
+    const {status, pct, cdMins, cdLabel} = getStatus(ex, totalMin);
+    const localT = timeInTZ(ex.tz);
+    const localD = dateInTZ(ex.tz);
+    const istT   = timeInTZ('Asia/Kolkata');
 
-    const badgeMap={
-      open:      ['badge-open',      '🟢 OPEN'],
-      closed:    ['badge-closed',    '🔴 CLOSED'],
-      pre:       ['badge-pre',       '🔵 PRE-OPEN'],
-      'soon-open': ['badge-soon-open','🟡 OPENING SOON'],
-      'soon-close':['badge-soon-close','🟠 CLOSING SOON'],
+    const badges = {
+      open:       ['badge-open',       '🟢 OPEN'],
+      closed:     ['badge-closed',     '🔴 CLOSED'],
+      pre:        ['badge-pre',        '🔵 PRE-OPEN'],
+      'soon-open':['badge-soon-open',  '🟡 OPENING SOON'],
+      'soon-close':['badge-soon-close','🟠 CLOSING SOON']
     };
-    const [badgeCls,badgeTxt]=badgeMap[status]||['badge-closed','🔴 CLOSED'];
+    const [bCls, bTxt] = badges[status] || ['badge-closed','🔴 CLOSED'];
 
-    const sessHours=ex.sessions.map(s=>
-      `${String(s.ist[0]).padStart(2,'0')}:${String(s.ist[1]).padStart(2,'0')} – `+
-      `${String(s.ist[2]%24).padStart(2,'0')}:${String(s.ist[3]).padStart(2,'0')} IST`+
-      (ex.sessions.length>1?' ('+s.label+')':'')
-    ).join(' | ');
+    const sessStr = ex.sessions.map(s =>
+      `${String(s.openH).padStart(2,'0')}:${String(s.openM).padStart(2,'0')} – ` +
+      `${String(s.closeH%24).padStart(2,'0')}:${String(s.closeM).padStart(2,'0')} IST`
+    ).join(' · ');
 
-    const countdownHTML = nextMins>0
-      ? `<div class="countdown">
-          <div class="cd-label">${nextEvent==='opens'?'⏱ Opens in':'⏱ Closes in'}</div>
-          <div class="cd-val" style="color:${nextEvent==='opens'?'#51cf66':'#ff9a00'}">${fmtCountdown(nextMins)}</div>
-        </div>` : '';
+    const cdColor = cdLabel.includes('Closes') ? '#ff9a00' : '#51cf66';
+    const fillCls = status==='open' ? 'fill-open' : status==='soon-close' ? 'fill-soon' : 'fill-closed';
 
-    const id='card-'+ex.id;
-    let card=document.getElementById(id);
-    if(!card){
-      card=document.createElement('div');
-      card.id=id;
-      grid.appendChild(card);
-    }
-    card.className='ex-card '+status;
-    card.style.setProperty('--card-accent',ex.color);
-    card.innerHTML=`
+    let card = document.getElementById('card-'+ex.id);
+    if(!card){ card = document.createElement('div'); card.id='card-'+ex.id; grid.appendChild(card); }
+
+    card.className = 'ex-card ' + status;
+    card.innerHTML = `
       <div class="ex-header">
         <div class="ex-name">${ex.flag} ${ex.name}</div>
-        <span class="status-badge ${badgeCls}">${badgeTxt}</span>
+        <span class="status-badge ${bCls}">${bTxt}</span>
       </div>
-      <div style="font-size:0.7em;color:#555;margin-bottom:8px">${ex.location} · ${ex.note}</div>
+      <div style="font-size:0.7em;color:#555;margin-bottom:8px">${ex.loc} · ${ex.note}</div>
       <div class="ex-times">
         <div class="ex-time-block">
           <div class="ex-time-label">Local Time</div>
-          <div class="ex-time-val" style="color:${ex.color}">${localTime}</div>
-          <div class="ex-time-local">${localDate} ${ex.tzLabel}</div>
+          <div class="ex-time-val" style="color:${ex.color}">${localT}</div>
+          <div class="ex-time-sub">${localD} ${ex.tzLabel}</div>
         </div>
         <div class="ex-time-block">
           <div class="ex-time-label">IST</div>
-          <div class="ex-time-val" style="color:var(--accent)">${istTime}</div>
-          <div class="ex-time-local">India Standard Time</div>
+          <div class="ex-time-val" style="color:#FFD700">${istT}</div>
+          <div class="ex-time-sub">India Standard Time</div>
         </div>
       </div>
-      <div class="ex-hours">
-        <span>🕐 Hours:</span> <span>${sessHours}</span>
+      <div class="ex-hours" style="margin-top:8px">
+        🕐 <span>${sessStr}</span>
       </div>
-      ${countdownHTML}
+      ${cdMins > 0 ? `<div class="countdown">
+        <div class="cd-label">${cdLabel}</div>
+        <div class="cd-val" style="color:${cdColor}">${fmtCD(cdMins)}</div>
+      </div>` : ''}
       <div class="session-bar">
-        <div class="session-fill ${status==='open'||status==='soon-close'?'open-fill':'closed-fill'}"
-             style="width:${sessionPct.toFixed(1)}%"></div>
+        <div class="session-fill ${fillCls}" style="width:${pct.toFixed(1)}%"></div>
       </div>
     `;
   });
 }
 
+// ── Timeline ──────────────────────────────────────────────────────────────────
 function renderTimeline(){
-  const nowMin=getISTMinutes();
-  const timeline=document.getElementById('timeline');
-  const pct=(nowMin/1440)*100;
-  document.getElementById('tl-now').style.left=pct+'%';
+  const {totalMin} = nowIST();
+  const timeline = document.getElementById('timeline');
 
-  // Draw segments
-  const existing=timeline.querySelectorAll('.tl-segment');
-  existing.forEach(e=>e.remove());
+  // Remove old segments
+  timeline.querySelectorAll('.tl-segment').forEach(e=>e.remove());
 
-  EXCHANGES.forEach(ex=>{
-    ex.sessions.forEach(sess=>{
-      const openPct=(sess.ist[0]*60+sess.ist[1])/1440*100;
-      const closePct=Math.min(100,(sess.ist[2]*60+sess.ist[3])/1440*100);
-      const seg=document.createElement('div');
-      seg.className='tl-segment';
-      seg.style.left=openPct+'%';
-      seg.style.width=Math.max(0.5,closePct-openPct)+'%';
-      seg.style.background=ex.color+'55';
-      seg.style.borderLeft='1px solid '+ex.color;
-      seg.style.color=ex.color;
-      seg.title=ex.name;
-      if(closePct-openPct>5) seg.textContent=ex.flag;
+  EX.forEach(ex => {
+    ex.sessions.forEach(s => {
+      const oP = (s.openH*60+s.openM)/1440*100;
+      const cP = Math.min(100,(s.closeH*60+s.closeM)/1440*100);
+      if(cP <= oP) return;
+      const seg = document.createElement('div');
+      seg.className = 'tl-segment';
+      seg.style.cssText = `left:${oP}%;width:${cP-oP}%;background:${ex.color}44;border-left:2px solid ${ex.color};color:${ex.color};`;
+      seg.title = ex.name;
+      if(cP-oP > 4) seg.textContent = ex.flag;
       timeline.appendChild(seg);
     });
   });
 
-  // Legend
-  const legend=document.getElementById('tl-legend');
+  document.getElementById('tl-now').style.left = (totalMin/1440*100)+'%';
+
+  // Legend (build once)
+  const legend = document.getElementById('tl-legend');
   if(!legend.children.length){
-    EXCHANGES.forEach(ex=>{
-      const item=document.createElement('div');
-      item.className='tl-leg-item';
-      item.innerHTML=`<div class="tl-leg-dot" style="background:${ex.color}"></div>${ex.flag} ${ex.name}`;
+    EX.forEach(ex=>{
+      const item = document.createElement('div');
+      item.className = 'tl-leg-item';
+      item.innerHTML = `<div class="tl-leg-dot" style="background:${ex.color}"></div>${ex.flag} ${ex.name}`;
       legend.appendChild(item);
     });
   }
 }
 
-function updateMasterClock(){
-  const now=new Date();
-  const ist=now.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',
-    hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
-  const date=now.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',
-    weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  document.getElementById('ist-time').textContent=ist;
-  document.getElementById('ist-date').textContent=date;
+// ── Master clock ──────────────────────────────────────────────────────────────
+function updateClock(){
+  const now = new Date();
+  document.getElementById('ist-time').textContent =
+    now.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+  document.getElementById('ist-date').textContent =
+    now.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
 
 function tick(){
-  updateMasterClock();
+  updateClock();
   renderCards();
   renderTimeline();
+  document.getElementById('status-bar').textContent =
+    'Last updated: ' + new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}) + ' IST';
 }
 
 tick();
-setInterval(tick,1000);
+setInterval(tick, 1000);
 </script>
 </body>
 </html>
