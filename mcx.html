@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MCX Futures — Datastream Helix</title>
+  <style>
+    :root { --accent: #FFD700; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    body { background: #0d0d0d; color: #f0f0f0; padding: 14px; }
+    .container { max-width: 980px; margin: auto; }
+    h2 { text-align: center; color: var(--accent); font-size: 1.3em; margin-bottom: 3px; }
+    .subtitle { text-align: center; color: #666; font-size: 0.76em; margin-bottom: 12px; }
+
+    .metal-switch { display: flex; justify-content: center; margin-bottom: 12px; }
+    .mbtn { padding: 8px 28px; cursor: pointer; font-size: 0.9em; font-weight: bold;
+            border: 2px solid #333; background: #1a1a1a; color: #777; transition: all 0.2s; }
+    .mbtn:first-child { border-radius: 7px 0 0 7px; }
+    .mbtn:last-child  { border-radius: 0 7px 7px 0; }
+    .mbtn.gold.active   { background: #FFD700; color: #000; border-color: #FFD700; }
+    .mbtn.silver.active { background: #C0C0C0; color: #000; border-color: #C0C0C0; }
+
+    .ticker { background: #111; border: 1px solid #1e1e1e; border-radius: 6px;
+              padding: 7px 12px; margin-bottom: 12px; display: flex;
+              flex-wrap: wrap; gap: 14px; font-size: 0.77em; align-items: center; }
+    .ticker b { color: var(--accent); }
+    .up   { color: #51cf66; font-weight: bold; }
+    .down { color: #ff6b6b; font-weight: bold; }
+
+    .banner { border-radius: 7px; padding: 10px 14px; margin-bottom: 12px;
+              display: flex; align-items: center; justify-content: space-between;
+              flex-wrap: wrap; gap: 8px; }
+    .banner.bullish { background: #081a08; border: 1px solid #51cf66; }
+    .banner.bearish { background: #1a0808; border: 1px solid #ff6b6b; }
+    .banner.neutral { background: #1a1a08; border: 1px solid #FFD700; }
+    .banner.covering{ background: #1a1008; border: 1px solid #ff9a00; }
+    .banner-title { font-size: 1em; font-weight: bold; }
+    .banner-desc  { font-size: 0.74em; color: #bbb; margin-top: 2px; }
+    .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+    .badge { padding: 3px 10px; border-radius: 10px; font-size: 0.71em; font-weight: bold; }
+    .badge.red    { background: #ff6b6b22; color: #ff6b6b; border: 1px solid #ff6b6b; }
+    .badge.green  { background: #51cf6622; color: #51cf66; border: 1px solid #51cf66; }
+    .badge.yellow { background: #FFD70022; color: #FFD700; border: 1px solid #FFD700; }
+    .badge.orange { background: #ff9a0022; color: #ff9a00; border: 1px solid #ff9a00; }
+
+    .sum-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(110px,1fr));
+                gap: 8px; margin-bottom: 12px; }
+    .sum-card { background: #141414; border: 1px solid #242424; border-radius: 7px;
+                padding: 10px; text-align: center; }
+    .sum-card .lbl { font-size: 0.67em; color: #777; margin-bottom: 3px; }
+    .sum-card .val { font-size: 1.15em; font-weight: bold; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.8em; }
+    th { background: #181818; color: var(--accent); padding: 8px 9px; text-align: left;
+         border-bottom: 2px solid var(--accent); white-space: nowrap; }
+    td { padding: 7px 9px; border-bottom: 1px solid #1c1c1c; white-space: nowrap; }
+    tr:hover td { background: #181818; }
+    .bid  { color: #51cf66; }
+    .ask  { color: #ff6b6b; }
+    .acc  { color: var(--accent); font-weight: bold; }
+    .pos  { color: #51cf66; }
+    .neg  { color: #ff6b6b; }
+
+    .depth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+    .depth-side { background: #111; border: 1px solid #1e1e1e; border-radius: 7px; overflow: hidden; }
+    .depth-hdr { padding: 7px 12px; font-size: 0.77em; font-weight: bold; text-transform: uppercase; }
+    .depth-hdr.bid-h { background: #0a1e0a; color: #51cf66; }
+    .depth-hdr.ask-h { background: #1e0a0a; color: #ff6b6b; }
+    .depth-row { display: grid; grid-template-columns: 1fr 1fr 1fr;
+                 padding: 5px 12px; font-size: 0.77em; border-bottom: 1px solid #181818; }
+    .depth-row.bid-row { background: linear-gradient(to right, #51cf6609, transparent); }
+    .depth-row.ask-row { background: linear-gradient(to left,  #ff6b6b09, transparent); }
+    .dh { color: #555; }
+
+    .sec-title { font-size: 0.79em; font-weight: bold; color: var(--accent);
+                 text-transform: uppercase; letter-spacing: 1px; margin: 12px 0 7px; }
+    .reload-btn { display: block; margin: 12px auto 0; padding: 8px 24px;
+                  background: #1a1a1a; border: 1px solid var(--accent); border-radius: 6px;
+                  color: var(--accent); font-size: 0.81em; cursor: pointer; transition: all 0.2s; }
+    .reload-btn:hover { background: var(--accent); color: #000; }
+    .status { text-align: center; color: #555; font-size: 0.72em; margin-top: 8px; }
+    .note-box { margin-top: 10px; padding: 10px 13px; background: #141414; border-radius: 6px;
+                border-left: 3px solid var(--accent); color: #888; font-size: 0.73em; line-height: 1.6; }
+    @media(max-width:600px){
+      th,td{ padding:5px 6px; font-size:0.73em; }
+      .depth-grid{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h2>📊 MCX Gold & Silver Futures</h2>
+  <div class="subtitle" id="last-update">Loading from datastream-helix/data/...</div>
+
+  <div class="metal-switch">
+    <button class="mbtn gold active" onclick="switchMetal('gold')">🏅 GOLD</button>
+    <button class="mbtn silver" onclick="switchMetal('silver')">🥈 SILVER</button>
+  </div>
+
+  <div class="ticker">
+    <span>📡 MCX Live</span>
+    <span><b>USD/INR:</b> <span id="t-usdinr">--</span></span>
+    <span><b>Gold LTP:</b> <span id="t-gold" class="up">--</span></span>
+    <span><b>Silver LTP:</b> <span id="t-silver" class="up">--</span></span>
+    <span><b>Gold OI:</b> <span id="t-gold-oi">--</span></span>
+    <span><b>Silver OI:</b> <span id="t-silver-oi">--</span></span>
+  </div>
+
+  <div class="banner neutral" id="sig-banner">
+    <div>
+      <div class="banner-title" id="sig-title">Calculating signal...</div>
+      <div class="banner-desc"  id="sig-desc">Loading MCX data...</div>
+    </div>
+    <div class="badges" id="sig-badges"></div>
+  </div>
+
+  <div class="sum-grid">
+    <div class="sum-card"><div class="lbl">LTP (₹)</div>
+      <div class="val acc" id="s-ltp">--</div></div>
+    <div class="sum-card"><div class="lbl">Change %</div>
+      <div class="val" id="s-chg">--</div></div>
+    <div class="sum-card"><div class="lbl">Avg Price (₹)</div>
+      <div class="val" id="s-avg">--</div></div>
+    <div class="sum-card"><div class="lbl">Close (₹)</div>
+      <div class="val" id="s-close">--</div></div>
+    <div class="sum-card"><div class="lbl">Volume (Lots)</div>
+      <div class="val" id="s-vol">--</div></div>
+    <div class="sum-card"><div class="lbl">OI (Lots)</div>
+      <div class="val" id="s-oi">--</div></div>
+    <div class="sum-card"><div class="lbl">OI Change</div>
+      <div class="val" id="s-oichg">--</div></div>
+    <div class="sum-card"><div class="lbl">Trading Unit</div>
+      <div class="val" id="s-unit">--</div></div>
+  </div>
+
+  <div class="sec-title" id="contracts-title">Active MCX Gold Contracts</div>
+  <div style="overflow-x:auto">
+  <table>
+    <thead><tr>
+      <th>Contract</th><th>Expiry</th><th>Days</th>
+      <th class="bid">Bid ₹</th><th class="bid">Bid Vol</th>
+      <th class="ask">Ask ₹</th><th class="ask">Ask Vol</th>
+      <th>Avg Price</th><th>Close</th>
+      <th>Vol (Lots)</th><th>OI (Lots)</th><th>OI Chg</th>
+      <th>Unit</th><th>Circuit</th>
+    </tr></thead>
+    <tbody id="contracts-tbody">
+      <tr><td colspan="14" style="text-align:center;padding:16px;color:#555">Loading...</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="sec-title">Market Depth — Best 5 Bid / Ask</div>
+  <div class="depth-grid">
+    <div class="depth-side">
+      <div class="depth-hdr bid-h">🟢 BID (Buyers)</div>
+      <div class="depth-row">
+        <span class="dh">Qty</span><span class="dh">Orders</span><span class="dh">Price</span>
+      </div>
+      <div id="bid-depth"></div>
+    </div>
+    <div class="depth-side">
+      <div class="depth-hdr ask-h">🔴 ASK (Sellers)</div>
+      <div class="depth-row">
+        <span class="dh">Price</span><span class="dh">Orders</span><span class="dh">Qty</span>
+      </div>
+      <div id="ask-depth"></div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <b style="color:var(--accent)">Signal Logic:</b>
+    Bullish = Price↑ + OI↑ + Bid&gt;Ask |
+    Bearish = Price↓ + OI↑ + Ask&gt;Bid |
+    Short Covering = Price↑ + OI↓ |
+    Long Unwinding = Price↓ + OI↓<br>
+    <b style="color:var(--accent)">Circuit:</b> MCX Gold ±3% | Silver ±3-5% daily band<br>
+    <b style="color:var(--accent)">Update:</b> GitHub Actions fetches MCX Bhavcopy daily at 8:30 AM IST
+  </div>
+
+  <button class="reload-btn" onclick="loadData()">🔄 Reload Latest Data</button>
+  <div class="status" id="status-msg">Ready</div>
+
+</div>
+<script>
+let metal = 'gold';
+let gData = null;
+let fxData = null;
+
+function setCSSAccent(m){
+  document.documentElement.style.setProperty('--accent', m==='gold'?'#FFD700':'#C0C0C0');
+}
+function switchMetal(m){
+  metal=m; setCSSAccent(m);
+  document.querySelector('.mbtn.gold').classList.toggle('active',m==='gold');
+  document.querySelector('.mbtn.silver').classList.toggle('active',m==='silver');
+  if(gData) renderMetal(gData,m);
+}
+function fmt(n){ return n!=null&&n!==''?Number(n).toLocaleString('en-IN'):'--'; }
+
+function calcSignal(d){
+  const bv = (d.bid_depth||[]).reduce((a,r)=>a+(r.qty||0),0);
+  const av = (d.ask_depth||[]).reduce((a,r)=>a+(r.qty||0),0);
+  const ratio = bv/(av||1);
+  const up = (d.chg||0)>=0;
+  const oiUp = (d.oi_change||0)>0;
+  if(up&&oiUp&&ratio>1.1)
+    return{cls:'bullish',title:'🟢 BULLISH — Long Buildup',
+      desc:'Price↑ + OI↑ + Bid Vol > Ask Vol. Fresh longs entering market.',
+      badges:'<span class="badge green">Long Buildup</span><span class="badge green">Bid&gt;Ask</span><span class="badge green">OI↑</span>'};
+  if(!up&&oiUp&&ratio<0.9)
+    return{cls:'bearish',title:'🔴 BEARISH — Short Buildup',
+      desc:'Price↓ + OI↑ + Ask Vol > Bid Vol. Fresh shorts entering market.',
+      badges:'<span class="badge red">Short Buildup</span><span class="badge red">Ask&gt;Bid</span><span class="badge red">OI↑</span>'};
+  if(up&&!oiUp)
+    return{cls:'covering',title:'🟠 SHORT COVERING — Caution',
+      desc:'Price↑ + OI↓. Shorts closing, not new longs. Rally may be weak.',
+      badges:'<span class="badge orange">Short Covering</span><span class="badge yellow">OI↓</span>'};
+  if(!up&&!oiUp)
+    return{cls:'neutral',title:'🟡 LONG UNWINDING — Mild Bearish',
+      desc:'Price↓ + OI↓. Longs exiting. Mild bearish but not aggressive.',
+      badges:'<span class="badge yellow">Long Unwinding</span><span class="badge yellow">OI↓</span>'};
+  return{cls:'neutral',title:'⚪ NEUTRAL — Consolidating',
+    desc:'Balanced bid/ask. Market undecided. Wait for breakout.',
+    badges:'<span class="badge yellow">Neutral</span>'};
+}
+
+function renderMetal(data, m){
+  const d = data[m]; if(!d) return;
+  document.getElementById('contracts-title').textContent =
+    'Active MCX '+(m==='gold'?'Gold':'Silver')+' Contracts';
+  document.getElementById('s-ltp').textContent   = '₹'+fmt(d.ltp);
+  const chgEl = document.getElementById('s-chg');
+  chgEl.textContent = (d.chg>=0?'+':'')+d.chg+'%';
+  chgEl.className = 'val '+(d.chg>=0?'up':'down');
+  document.getElementById('s-avg').textContent   = '₹'+fmt(d.avg_price);
+  document.getElementById('s-close').textContent = '₹'+fmt(d.close);
+  document.getElementById('s-vol').textContent   = fmt(d.volume);
+  document.getElementById('s-oi').textContent    = fmt(d.oi);
+  const oiEl = document.getElementById('s-oichg');
+  oiEl.textContent = (d.oi_change>=0?'+':'')+fmt(d.oi_change);
+  oiEl.className = 'val '+(d.oi_change>=0?'pos':'neg');
+  document.getElementById('s-unit').textContent  = d.unit||'--';
+
+  // Ticker
+  if(m==='gold'){
+    const el=document.getElementById('t-gold');
+    el.textContent='₹'+fmt(d.ltp)+' ('+(d.chg>=0?'+':'')+d.chg+'%)';
+    el.className=d.chg>=0?'up':'down';
+    document.getElementById('t-gold-oi').textContent=fmt(d.oi)+' lots';
+  } else {
+    const el=document.getElementById('t-silver');
+    el.textContent='₹'+fmt(d.ltp)+' ('+(d.chg>=0?'+':'')+d.chg+'%)';
+    el.className=d.chg>=0?'up':'down';
+    document.getElementById('t-silver-oi').textContent=fmt(d.oi)+' lots';
+  }
+
+  // Signal
+  const sig = calcSignal(d);
+  const banner = document.getElementById('sig-banner');
+  banner.className='banner '+sig.cls;
+  document.getElementById('sig-title').textContent = sig.title;
+  document.getElementById('sig-desc').textContent  = sig.desc;
+  document.getElementById('sig-badges').innerHTML  = sig.badges;
+  if(Math.abs(d.chg||0)>=2.9){
+    document.getElementById('sig-badges').innerHTML +=
+      '<span class="badge orange">⚡ '+(d.chg>0?'UPPER':'LOWER')+' CIRCUIT</span>';
+  }
+
+  // Contracts table
+  const tbody = document.getElementById('contracts-tbody');
+  const contracts = d.contracts||[];
+  if(!contracts.length){
+    tbody.innerHTML='<tr><td colspan="14" style="text-align:center;padding:14px;color:#555">No contract data</td></tr>';
+  } else {
+    tbody.innerHTML = contracts.map(c=>{
+      const oiCls=c.oi_change>=0?'pos':'neg';
+      const cktCls=c.circuit==='Normal'?'':c.circuit==='Upper'?'style="color:#ff9a00;font-weight:bold"':'style="color:#a78bfa;font-weight:bold"';
+      return `<tr>
+        <td class="acc">${c.name||'--'}</td>
+        <td>${c.expiry||'--'}</td>
+        <td>${c.days_left||'--'}d</td>
+        <td class="bid">₹${fmt(c.bid_price)}</td>
+        <td class="bid">${c.bid_vol||0}</td>
+        <td class="ask">₹${fmt(c.ask_price)}</td>
+        <td class="ask">${c.ask_vol||0}</td>
+        <td>₹${fmt(c.avg_price)}</td>
+        <td>₹${fmt(c.close)}</td>
+        <td>${fmt(c.volume)}</td>
+        <td>${fmt(c.oi)}</td>
+        <td class="${oiCls}">${c.oi_change>=0?'+':''  }${fmt(c.oi_change)}</td>
+        <td>${c.unit||'--'}</td>
+        <td ${cktCls}>${c.circuit||'Normal'}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  // Depth
+  const bd = d.bid_depth||[];
+  const ad = d.ask_depth||[];
+  document.getElementById('bid-depth').innerHTML = bd.length
+    ? bd.map(r=>`<div class="depth-row bid-row">
+        <span class="bid">${r.qty||0}</span>
+        <span style="color:#666">${r.orders||1}</span>
+        <span class="bid">₹${fmt(r.price)}</span>
+      </div>`).join('')
+    : '<div style="padding:10px 12px;color:#555;font-size:0.78em">No depth data</div>';
+  document.getElementById('ask-depth').innerHTML = ad.length
+    ? ad.map(r=>`<div class="depth-row ask-row">
+        <span class="ask">₹${fmt(r.price)}</span>
+        <span style="color:#666">${r.orders||1}</span>
+        <span class="ask">${r.qty||0}</span>
+      </div>`).join('')
+    : '<div style="padding:10px 12px;color:#555;font-size:0.78em">No depth data</div>';
+}
+
+async function loadData(){
+  document.getElementById('status-msg').textContent='⏳ Loading...';
+  document.querySelector('.reload-btn').textContent='⏳ Loading...';
+  try{
+    const [mRes, fRes] = await Promise.all([
+      fetch('data/mcx_futures.json?t='+Date.now()),
+      fetch('data/forex.json?t='+Date.now())
+    ]);
+    gData  = await mRes.json();
+    fxData = await fRes.json();
+    document.getElementById('t-usdinr').textContent = '₹'+(fxData.usd_inr||93.31);
+    document.getElementById('last-update').textContent =
+      'Fetched: '+(gData.fetched_at||gData.date||'Unknown')+' | MCX Bhavcopy';
+    renderMetal(gData, metal);
+    // Also populate the other metal ticker
+    if(gData.silver){ const s=gData.silver;
+      document.getElementById('t-silver').textContent='₹'+fmt(s.ltp)+' ('+(s.chg>=0?'+':'')+s.chg+'%)';
+      document.getElementById('t-silver').className=s.chg>=0?'up':'down';
+      document.getElementById('t-silver-oi').textContent=fmt(s.oi)+' lots'; }
+    if(gData.gold){ const g=gData.gold;
+      document.getElementById('t-gold').textContent='₹'+fmt(g.ltp)+' ('+(g.chg>=0?'+':'')+g.chg+'%)';
+      document.getElementById('t-gold').className=g.chg>=0?'up':'down';
+      document.getElementById('t-gold-oi').textContent=fmt(g.oi)+' lots'; }
+    document.getElementById('status-msg').textContent=
+      '✅ Loaded at '+new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})+' IST';
+  } catch(e){
+    document.getElementById('status-msg').textContent='⚠️ Error: '+e.message;
+  }
+  document.querySelector('.reload-btn').textContent='🔄 Reload Latest Data';
+}
+
+setCSSAccent('gold');
+loadData();
+</script>
+</body>
+</html>
