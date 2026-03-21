@@ -1,0 +1,13 @@
+{
+  "date": "Pending first fetch",
+  "gold": {
+    "ltp": 0, "chg": 0, "volume": 0, "oi": 0,
+    "oi_change": 0, "avg_price": 0, "close": 0,
+    "contracts": []
+  },
+  "silver": {
+    "ltp": 0, "chg": 0, "volume": 0, "oi": 0,
+    "oi_change": 0, "avg_price": 0, "close": 0,
+    "contracts": []
+  }
+}
