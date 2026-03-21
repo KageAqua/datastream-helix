@@ -18,46 +18,27 @@
     .brand-icon { font-size:1.5em; }
     .brand-name { font-size:1.05em; font-weight:bold; color:var(--accent); }
     .brand-sub  { font-size:0.68em; color:#555; }
-    .nav-clock  { font-size:0.82em; color:var(--accent); font-weight:bold;
-                  letter-spacing:1px; }
+    .nav-clock  { font-size:0.82em; color:var(--accent); font-weight:bold; letter-spacing:1px; }
     .nav-date   { font-size:0.68em; color:#555; text-align:right; }
 
     /* ── Tab Bar ── */
     .tabbar { background:#0d0d0d; border-bottom:2px solid #1a1a1a;
-              display:flex; overflow-x:auto; padding:0 16px; gap:4px;
+              display:flex; overflow-x:auto; padding:0 16px; gap:2px;
               scrollbar-width:none; }
     .tabbar::-webkit-scrollbar { display:none; }
     .nav-tab { padding:12px 18px; cursor:pointer; font-size:0.84em; font-weight:bold;
                color:#555; border-bottom:3px solid transparent; white-space:nowrap;
-               transition:all 0.2s; flex-shrink:0; }
-    .nav-tab:hover { color:#aaa; }
+               transition:all 0.2s; flex-shrink:0; text-decoration:none; display:block; }
+    .nav-tab:hover { color:#ccc; border-bottom-color:#444; }
     .nav-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
 
     /* ── Content ── */
-    .page { display:none; padding:16px; max-width:1060px; margin:auto; }
-    .page.active { display:block; }
+    .content { padding:16px; max-width:1060px; margin:auto; }
 
-    /* ── Home Page ── */
-    .home-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-                 gap:12px; margin-bottom:20px; }
-    .home-card { background:var(--card); border:1px solid var(--border);
-                 border-radius:10px; padding:16px; cursor:pointer;
-                 transition:all 0.2s; text-decoration:none; color:inherit;
-                 display:block; }
-    .home-card:hover { border-color:var(--accent); transform:translateY(-2px); }
-    .home-card .hc-icon { font-size:2em; margin-bottom:8px; }
-    .home-card .hc-title { font-size:1em; font-weight:bold; color:var(--accent);
-                           margin-bottom:4px; }
-    .home-card .hc-desc  { font-size:0.74em; color:#666; line-height:1.5; }
-    .home-card .hc-status { display:inline-block; margin-top:8px; padding:2px 10px;
-                            border-radius:8px; font-size:0.7em; font-weight:bold; }
-    .live { background:#51cf6622; color:#51cf66; border:1px solid #51cf66; }
-    .auto { background:#74c0fc22; color:#74c0fc; border:1px solid #74c0fc; }
-
-    /* Market Ticker Strip */
+    /* ── Ticker Strip ── */
     .ticker-strip { background:#0a0a0a; border:1px solid #1a1a1a; border-radius:8px;
                     padding:10px 16px; margin-bottom:16px; display:flex;
-                    flex-wrap:wrap; gap:16px; font-size:0.8em; align-items:center; }
+                    flex-wrap:wrap; gap:18px; font-size:0.8em; align-items:center; }
     .ts-item { display:flex; flex-direction:column; gap:1px; }
     .ts-label { font-size:0.68em; color:#555; text-transform:uppercase; }
     .ts-val   { font-weight:bold; }
@@ -65,30 +46,39 @@
     .down { color:#ff6b6b; }
     .acc  { color:var(--accent); }
 
-    /* Quick Stats */
+    /* ── Quick Stats ── */
     .qs-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
                gap:10px; margin-bottom:16px; }
-    .qs-card { background:var(--card); border:1px solid var(--border); border-radius:8px;
-               padding:12px; text-align:center; }
+    .qs-card { background:var(--card); border:1px solid var(--border);
+               border-radius:8px; padding:12px; text-align:center; }
     .qs-card .ql { font-size:0.67em; color:#666; margin-bottom:4px; }
     .qs-card .qv { font-size:1.2em; font-weight:bold; }
 
-    /* Iframe pages */
-    .iframe-wrap { width:100%; border:none; border-radius:8px; overflow:hidden; }
-    iframe { width:100%; border:none; border-radius:8px;
-             height:calc(100vh - 130px); min-height:600px; }
+    /* ── Module Cards ── */
+    .home-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+                 gap:12px; margin-bottom:20px; }
+    .home-card { background:var(--card); border:1px solid var(--border);
+                 border-radius:10px; padding:16px; cursor:pointer;
+                 transition:all 0.2s; text-decoration:none; color:inherit; display:block; }
+    .home-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+    .hc-icon  { font-size:2em; margin-bottom:8px; }
+    .hc-title { font-size:1em; font-weight:bold; color:var(--accent); margin-bottom:4px; }
+    .hc-desc  { font-size:0.74em; color:#666; line-height:1.5; }
+    .hc-status { display:inline-block; margin-top:8px; padding:2px 10px;
+                 border-radius:8px; font-size:0.7em; font-weight:bold; }
+    .live { background:#51cf6622; color:#51cf66; border:1px solid #51cf66; }
+    .auto { background:#74c0fc22; color:#74c0fc; border:1px solid #74c0fc; }
 
-    /* Footer */
+    .dot { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:4px; }
+    .dot.green { background:#51cf66; animation:blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
+
+    .info-box { background:var(--card); border:1px solid var(--border); border-radius:8px;
+                padding:14px 18px; font-size:0.77em; color:#666; line-height:1.7; }
+
+    /* ── Footer ── */
     .footer { text-align:center; padding:20px; color:#333; font-size:0.72em;
               border-top:1px solid #1a1a1a; margin-top:20px; }
-    .footer span { color:#555; }
-
-    /* Status dot */
-    .dot { display:inline-block; width:7px; height:7px; border-radius:50%;
-           margin-right:5px; }
-    .dot.green { background:#51cf66; animation:blink 2s infinite; }
-    .dot.grey  { background:#444; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
     @media(max-width:600px){
       .nav-tab { padding:10px 12px; font-size:0.78em; }
@@ -115,56 +105,56 @@
 
 <!-- Tab Bar -->
 <div class="tabbar">
-  <div class="nav-tab active" onclick="showPage('home',this)">🏠 Home</div>
-  <div class="nav-tab" onclick="showPage('comex',this)">🏅 COMEX Delivery</div>
-  <div class="nav-tab" onclick="showPage('mcx',this)">📊 MCX Futures</div>
-  <div class="nav-tab" onclick="showPage('warehouse',this)">🏦 Warehouse Stats</div>
-  <div class="nav-tab" onclick="showPage('clock',this)">🌐 Exchange Clock</div>
+  <a class="nav-tab active" href="index.html">🏠 Home</a>
+  <a class="nav-tab" href="comex.html">🏅 COMEX Delivery</a>
+  <a class="nav-tab" href="mcx.html">📊 MCX Futures</a>
+  <a class="nav-tab" href="warehouse.html">🏦 Warehouse Stats</a>
+  <a class="nav-tab" href="clock.html">🌐 Exchange Clock</a>
 </div>
 
-<!-- HOME PAGE -->
-<div id="page-home" class="page active">
+<!-- Content -->
+<div class="content">
 
   <!-- Ticker Strip -->
-  <div class="ticker-strip" id="ticker-strip">
+  <div class="ticker-strip">
     <div class="ts-item">
       <span class="ts-label">🏅 MCX Gold</span>
-      <span class="ts-val acc" id="t-mcx-gold">Loading...</span>
+      <span class="ts-val acc" id="t-gold">Loading...</span>
     </div>
     <div class="ts-item">
       <span class="ts-label">🥈 MCX Silver</span>
-      <span class="ts-val" id="t-mcx-silver">Loading...</span>
+      <span class="ts-val" id="t-silver">Loading...</span>
     </div>
     <div class="ts-item">
       <span class="ts-label">💵 USD/INR</span>
-      <span class="ts-val" id="t-usdinr">Loading...</span>
+      <span class="ts-val acc" id="t-fx">--</span>
     </div>
     <div class="ts-item">
       <span class="ts-label">📦 COMEX Gold OI</span>
-      <span class="ts-val" id="t-comex-oi">Loading...</span>
+      <span class="ts-val" id="t-oi">--</span>
     </div>
     <div class="ts-item">
       <span class="ts-label">🏦 COMEX Registered</span>
-      <span class="ts-val" id="t-comex-reg">Loading...</span>
+      <span class="ts-val" id="t-reg">--</span>
     </div>
     <div class="ts-item">
-      <span class="ts-label">🕐 IST</span>
+      <span class="ts-label">🕐 IST Now</span>
       <span class="ts-val acc" id="t-ist">--:--</span>
     </div>
   </div>
 
   <!-- Quick Stats -->
-  <div class="qs-grid" id="qs-grid">
+  <div class="qs-grid">
     <div class="qs-card">
-      <div class="ql">COMEX Gold Issued Today</div>
+      <div class="ql">COMEX Gold Issued</div>
       <div class="qv" id="q-issued" style="color:#ff6b6b">--</div>
     </div>
     <div class="qs-card">
-      <div class="ql">COMEX Gold Stopped Today</div>
+      <div class="ql">COMEX Gold Stopped</div>
       <div class="qv" id="q-stopped" style="color:#51cf66">--</div>
     </div>
     <div class="qs-card">
-      <div class="ql">COMEX Net Signal</div>
+      <div class="ql">COMEX Signal</div>
       <div class="qv" id="q-signal">--</div>
     </div>
     <div class="qs-card">
@@ -172,8 +162,8 @@
       <div class="qv" id="q-oichg">--</div>
     </div>
     <div class="qs-card">
-      <div class="ql">COMEX Silver Registered (Moz)</div>
-      <div class="qv" id="q-ag-reg" style="color:#C0C0C0">--</div>
+      <div class="ql">COMEX Silver Reg (oz)</div>
+      <div class="qv" id="q-agreg" style="color:#C0C0C0">--</div>
     </div>
     <div class="qs-card">
       <div class="ql">Last Data Fetch</div>
@@ -183,97 +173,70 @@
 
   <!-- Module Cards -->
   <div class="home-grid">
-    <div class="home-card" onclick="showPage('comex',document.querySelectorAll('.nav-tab')[1])">
+    <a class="home-card" href="comex.html">
       <div class="hc-icon">🏅</div>
       <div class="hc-title">COMEX Delivery Notices</div>
       <div class="hc-desc">Daily Issued & Stopped notices for Gold and Silver futures. Firm-by-firm breakdown with MTD totals and Bullish/Bearish signal.</div>
       <span class="hc-status auto"><span class="dot green"></span>Daily Auto-Fetch</span>
-    </div>
-    <div class="home-card" onclick="showPage('mcx',document.querySelectorAll('.nav-tab')[2])">
+    </a>
+    <a class="home-card" href="mcx.html">
       <div class="hc-icon">📊</div>
       <div class="hc-title">MCX Futures Dashboard</div>
       <div class="hc-desc">MCX Gold & Silver active contracts with Bid/Ask, OI, Volume, Market Depth and Long Buildup / Short Covering signals.</div>
       <span class="hc-status auto"><span class="dot green"></span>Daily Auto-Fetch</span>
-    </div>
-    <div class="home-card" onclick="showPage('warehouse',document.querySelectorAll('.nav-tab')[3])">
+    </a>
+    <a class="home-card" href="warehouse.html">
       <div class="hc-icon">🏦</div>
       <div class="hc-title">Warehouse Statistics</div>
-      <div class="hc-desc">Physical vault inventory for COMEX (New York), SGE (Shanghai) and MCX India. Depository breakdown with Registered vs Eligible stocks.</div>
+      <div class="hc-desc">Physical vault inventory for COMEX (New York), SGE (Shanghai) and MCX India. Registered vs Eligible with bar chart.</div>
       <span class="hc-status auto"><span class="dot green"></span>Daily Auto-Fetch</span>
-    </div>
-    <div class="home-card" onclick="showPage('clock',document.querySelectorAll('.nav-tab')[4])">
+    </a>
+    <a class="home-card" href="clock.html">
       <div class="hc-icon">🌐</div>
       <div class="hc-title">Global Exchange Clock</div>
-      <div class="hc-desc">Live session status for MCX, COMEX, LBMA, SGE, TOCOM, DGCX and IBJA. Countdown timers, IST timeline, Pre-Open alerts.</div>
-      <span class="hc-status live"><span class="dot green"></span>Live — Updates Every Second</span>
-    </div>
+      <div class="hc-desc">Live session status for MCX, COMEX, LBMA, SGE, TOCOM, DGCX and IBJA. Countdown timers and IST timeline.</div>
+      <span class="hc-status live"><span class="dot green"></span>Live — Every Second</span>
+    </a>
   </div>
 
-  <!-- About -->
-  <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;
-              padding:14px 18px;font-size:0.77em;color:#666;line-height:1.7;">
+  <!-- Info -->
+  <div class="info-box">
     <b style="color:var(--accent)">⚡ Datastream Helix</b> — Private bullion market intelligence dashboard.<br>
-    <b style="color:#aaa">Sources:</b> CME Group (COMEX PDFs/XLS) · MCX Bhavcopy · SGE Shanghai · open.er-api.com (Forex)<br>
-    <b style="color:#aaa">Auto-Update:</b> GitHub Actions runs daily at <b style="color:var(--accent)">8:30 AM IST</b> (Mon–Fri) and commits fresh JSON data.<br>
-    <b style="color:#aaa">Hosted:</b> GitHub Pages — <span style="color:var(--accent)">kageaqua.github.io/datastream-helix</span>
+    <b style="color:#aaa">Sources:</b> CME Group (COMEX PDFs/XLS) &nbsp;·&nbsp; MCX Bhavcopy CSV &nbsp;·&nbsp; SGE Shanghai &nbsp;·&nbsp; open.er-api.com<br>
+    <b style="color:#aaa">Auto-Update:</b> GitHub Actions runs daily at <b style="color:var(--accent)">8:30 AM IST</b> weekdays — pushes fresh JSON to repo.<br>
+    <b style="color:#aaa">URL:</b> <span style="color:var(--accent)">kageaqua.github.io/datastream-helix</span>
   </div>
 
 </div>
 
-<!-- COMEX PAGE -->
-<div id="page-comex" class="page">
-  <iframe src="comex.html" id="iframe-comex" loading="lazy"></iframe>
-</div>
-
-<!-- MCX PAGE -->
-<div id="page-mcx" class="page">
-  <iframe src="mcx.html" id="iframe-mcx" loading="lazy"></iframe>
-</div>
-
-<!-- WAREHOUSE PAGE -->
-<div id="page-warehouse" class="page">
-  <iframe src="warehouse.html" id="iframe-warehouse" loading="lazy"></iframe>
-</div>
-
-<!-- CLOCK PAGE -->
-<div id="page-clock" class="page">
-  <iframe src="clock.html" id="iframe-clock" loading="lazy"></iframe>
-</div>
-
-<div class="footer">
-  ⚡ Datastream Helix · <span>Private Dashboard · Data for informational purposes only</span>
-</div>
+<div class="footer">⚡ Datastream Helix &nbsp;·&nbsp; <span>Private Dashboard · Data for informational purposes only</span></div>
 
 <script>
-// ── Navigation ─────────────────────────────────────────────────────────────────
-function showPage(name, tabEl){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  tabEl.classList.add('active');
-  // Reload iframe src to refresh data
-  const iframe=document.getElementById('iframe-'+name);
-  if(iframe && !iframe.src) iframe.src=iframe.getAttribute('src');
+// ── Clock ──────────────────────────────────────────────────────────────────────
+function tick(){
+  const now = new Date();
+  const opt = {timeZone:'Asia/Kolkata'};
+  document.getElementById('nav-clock').textContent =
+    now.toLocaleString('en-IN',{...opt,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+  document.getElementById('nav-date').textContent =
+    now.toLocaleString('en-IN',{...opt,weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  document.getElementById('t-ist').textContent =
+    now.toLocaleString('en-IN',{...opt,hour:'2-digit',minute:'2-digit',hour12:false});
 }
+setInterval(tick,1000); tick();
 
-// ── Master Clock ───────────────────────────────────────────────────────────────
-function updateClock(){
-  const now=new Date();
-  const t=now.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',
-    hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
-  const d=now.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',
-    weekday:'short',day:'numeric',month:'short',year:'numeric'});
-  document.getElementById('nav-clock').textContent=t;
-  document.getElementById('nav-date').textContent=d;
-  document.getElementById('t-ist').textContent=
-    now.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',hour12:false});
-}
-setInterval(updateClock,1000);
-updateClock();
+// ── Active tab highlight ───────────────────────────────────────────────────────
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  const href = tab.getAttribute('href');
+  if(href && window.location.pathname.endsWith(href)){
+    document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+  }
+});
 
 // ── Load summary data ──────────────────────────────────────────────────────────
 function fmt(n){
-  if(!n&&n!==0) return '--';
+  if(n==null) return '--';
   const v=Number(n);
   if(Math.abs(v)>=1e9) return (v/1e9).toFixed(2)+'B';
   if(Math.abs(v)>=1e6) return (v/1e6).toFixed(2)+'M';
@@ -283,50 +246,44 @@ function fmt(n){
 
 async function loadSummary(){
   try {
+    const t = Date.now();
     const [cd,mf,wc,fx] = await Promise.all([
-      fetch('data/comex_delivery.json?t='+Date.now()).then(r=>r.json()),
-      fetch('data/mcx_futures.json?t='+Date.now()).then(r=>r.json()),
-      fetch('data/warehouse_comex.json?t='+Date.now()).then(r=>r.json()),
-      fetch('data/forex.json?t='+Date.now()).then(r=>r.json()),
+      fetch('data/comex_delivery.json?t='+t).then(r=>r.json()),
+      fetch('data/mcx_futures.json?t='+t).then(r=>r.json()),
+      fetch('data/warehouse_comex.json?t='+t).then(r=>r.json()),
+      fetch('data/forex.json?t='+t).then(r=>r.json()),
     ]);
 
     // Ticker
     const mg=mf.gold||{}, ms=mf.silver||{};
-    const tg=document.getElementById('t-mcx-gold');
-    tg.textContent='₹'+(mg.ltp?Number(mg.ltp).toLocaleString('en-IN'):'--')+
-      (mg.chg!=null?' ('+(mg.chg>=0?'+':'')+mg.chg+'%)':'  ');
+    const tg=document.getElementById('t-gold');
+    tg.textContent = '₹'+(mg.ltp?Number(mg.ltp).toLocaleString('en-IN'):'--')+
+      (mg.chg!=null?' ('+(mg.chg>=0?'+':'')+mg.chg+'%)':'');
     tg.className='ts-val '+(mg.chg>=0?'up':'down');
-    const ts=document.getElementById('t-mcx-silver');
-    ts.textContent='₹'+(ms.ltp?Number(ms.ltp).toLocaleString('en-IN'):'--')+
-      (ms.chg!=null?' ('+(ms.chg>=0?'+':'')+ms.chg+'%)':'  ');
+    const ts=document.getElementById('t-silver');
+    ts.textContent = '₹'+(ms.ltp?Number(ms.ltp).toLocaleString('en-IN'):'--')+
+      (ms.chg!=null?' ('+(ms.chg>=0?'+':'')+ms.chg+'%)':'');
     ts.className='ts-val '+(ms.chg>=0?'up':'down');
-    document.getElementById('t-usdinr').textContent='₹'+(fx.usd_inr||'--');
-    document.getElementById('t-comex-oi').textContent=fmt(mg.oi)+' lots';
-
-    // COMEX registered gold
-    const wcg=wc.gold||{};
-    document.getElementById('t-comex-reg').textContent=fmt(wcg.registered)+' oz';
+    document.getElementById('t-fx').textContent  = '₹'+(fx.usd_inr||'--');
+    document.getElementById('t-oi').textContent  = fmt(mg.oi)+' lots';
+    document.getElementById('t-reg').textContent = fmt((wc.gold||{}).registered)+' oz';
 
     // Quick stats
     const cdg=cd.gold||{};
-    document.getElementById('q-issued').textContent=cdg.total_issued||'--';
-    document.getElementById('q-stopped').textContent=cdg.total_stopped||'--';
+    document.getElementById('q-issued').textContent  = cdg.total_issued||'--';
+    document.getElementById('q-stopped').textContent = cdg.total_stopped||'--';
     const net=(cdg.total_issued||0)-(cdg.total_stopped||0);
-    const sigEl=document.getElementById('q-signal');
-    if(net>30){ sigEl.textContent='🔴 Bearish'; sigEl.style.color='#ff6b6b'; }
-    else if(net<-30){ sigEl.textContent='🟢 Bullish'; sigEl.style.color='#51cf66'; }
-    else { sigEl.textContent='🟡 Neutral'; sigEl.style.color='#FFD700'; }
-    const oiEl=document.getElementById('q-oichg');
-    oiEl.textContent=(mg.oi_change>=0?'+':'')+fmt(mg.oi_change);
-    oiEl.style.color=mg.oi_change>=0?'#51cf66':'#ff6b6b';
-    const wcs=wc.silver||{};
-    document.getElementById('q-ag-reg').textContent=fmt(wcs.registered)+' oz';
-    document.getElementById('q-fetch').textContent=
-      cd.fetched_at||mf.fetched_at||'Pending first fetch';
+    const se=document.getElementById('q-signal');
+    if(net>30){se.textContent='🔴 Bearish';se.style.color='#ff6b6b';}
+    else if(net<-30){se.textContent='🟢 Bullish';se.style.color='#51cf66';}
+    else{se.textContent='🟡 Neutral';se.style.color='#FFD700';}
+    const oe=document.getElementById('q-oichg');
+    oe.textContent=(mg.oi_change>=0?'+':'')+fmt(mg.oi_change);
+    oe.style.color=mg.oi_change>=0?'#51cf66':'#ff6b6b';
+    document.getElementById('q-agreg').textContent = fmt((wc.silver||{}).registered)+' oz';
+    document.getElementById('q-fetch').textContent  = cd.fetched_at||mf.fetched_at||'Pending first fetch';
 
-  } catch(e){
-    console.warn('Summary load error:',e);
-  }
+  } catch(e){ console.warn('Summary error:',e); }
 }
 
 loadSummary();
