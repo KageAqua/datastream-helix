@@ -1,66 +1,30 @@
 {
   "date": "2026-03-21",
-  "fetched_at": "2026-03-21 Manual",
+  "fetched_at": "2026-03-21 09:20 UTC(fallback)",
   "gold": {
-    "ltp": 141121, "chg": -5.15, "avg_price": 147083,
-    "close": 153025, "volume": 13254, "oi": 6442,
-    "oi_change": -312, "unit": "100 GRMS",
-    "contracts": [
-      { "name":"GOLD APR 2026","expiry":"02-Apr-2026","days_left":12,
-        "bid_price":140800,"bid_vol":24,"ask_price":141200,"ask_vol":18,
-        "avg_price":147083,"close":153025,"volume":13254,"oi":6442,
-        "oi_change":-312,"unit":"100g","circuit":"Normal" },
-      { "name":"GOLD JUN 2026","expiry":"05-Jun-2026","days_left":76,
-        "bid_price":143500,"bid_vol":8,"ask_price":143900,"ask_vol":12,
-        "avg_price":143700,"close":149000,"volume":1842,"oi":2180,
-        "oi_change":95,"unit":"100g","circuit":"Normal" },
-      { "name":"GOLD AUG 2026","expiry":"04-Aug-2026","days_left":136,
-        "bid_price":146200,"bid_vol":3,"ask_price":146800,"ask_vol":5,
-        "avg_price":146500,"close":151200,"volume":312,"oi":840,
-        "oi_change":22,"unit":"100g","circuit":"Normal" }
-    ],
-    "bid_depth": [
-      {"qty":24,"orders":3,"price":140800},
-      {"qty":18,"orders":2,"price":140750},
-      {"qty":12,"orders":4,"price":140700},
-      {"qty":35,"orders":5,"price":140650},
-      {"qty":9, "orders":1,"price":140600}
-    ],
-    "ask_depth": [
-      {"price":141200,"orders":2,"qty":18},
-      {"price":141250,"orders":3,"qty":27},
-      {"price":141300,"orders":1,"qty":8 },
-      {"price":141350,"orders":4,"qty":44},
-      {"price":141400,"orders":2,"qty":15}
-    ]
+    "ltp": 0,
+    "chg": 0,
+    "volume": 0,
+    "oi": 0,
+    "oi_change": 0,
+    "avg_price": 0,
+    "close": 0,
+    "unit": "--",
+    "contracts": [],
+    "bid_depth": [],
+    "ask_depth": []
   },
   "silver": {
-    "ltp": 237863, "chg": 2.77, "avg_price": 231200,
-    "close": 231460, "volume": 893, "oi": 6146,
-    "oi_change": -166, "unit": "30 KG",
-    "contracts": [
-      { "name":"SILVER MAY 2026","expiry":"04-May-2026","days_left":44,
-        "bid_price":237500,"bid_vol":31,"ask_price":238100,"ask_vol":19,
-        "avg_price":231200,"close":231460,"volume":893,"oi":6146,
-        "oi_change":-166,"unit":"30kg","circuit":"Normal" },
-      { "name":"SILVER JUL 2026","expiry":"06-Jul-2026","days_left":107,
-        "bid_price":243700,"bid_vol":9,"ask_price":244300,"ask_vol":14,
-        "avg_price":244016,"close":236565,"volume":78,"oi":1218,
-        "oi_change":-11,"unit":"30kg","circuit":"Normal" }
-    ],
-    "bid_depth": [
-      {"qty":31,"orders":4,"price":237500},
-      {"qty":22,"orders":3,"price":237200},
-      {"qty":14,"orders":2,"price":236900},
-      {"qty":8, "orders":1,"price":236600},
-      {"qty":5, "orders":2,"price":236300}
-    ],
-    "ask_depth": [
-      {"price":238100,"orders":2,"qty":19},
-      {"price":238400,"orders":3,"qty":28},
-      {"price":238700,"orders":1,"qty":10},
-      {"price":239000,"orders":2,"qty":16},
-      {"price":239300,"orders":4,"qty":35}
-    ]
+    "ltp": 0,
+    "chg": 0,
+    "volume": 0,
+    "oi": 0,
+    "oi_change": 0,
+    "avg_price": 0,
+    "close": 0,
+    "unit": "--",
+    "contracts": [],
+    "bid_depth": [],
+    "ask_depth": []
   }
 }

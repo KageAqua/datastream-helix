@@ -1,33 +1,23 @@
 {
-  "report_date": "03/20/2026",
-  "activity_date": "03/19/2026",
+  "fetched_at": "2026-03-21 09:20 UTC",
+  "report_date": "--",
+  "activity_date": "--",
   "gold": {
-    "registered": 79411724, "eligible": 255272997975, "combined": 332055254634,
-    "received": 0, "withdrawn": 212172830, "net_change": -212172830,
-    "depositories": [
-      {"name":"ASAMI DEPOSITORY LLC","prev":22228973992,"received":0,"withdrawn":0,"net":102288700,"adj":0,"total":22121653262,"registered":22228973992,"eligible":1064402578},
-      {"name":"BRINKS INC","prev":40428222862,"received":0,"withdrawn":615182831,"net":-616162814,"adj":0,"total":40709060028,"registered":11647579071,"eligible":38789813791},
-      {"name":"CNT DEPOSITORY INC","prev":20851570838,"received":40800650,"withdrawn":0,"net":40952500,"adj":0,"total":20885541715,"registered":11785958183,"eligible":9068712405},
-      {"name":"DELAWARE DEPOSITORY","prev":17155449647,"received":0,"withdrawn":969900,"net":-969900,"adj":0,"total":17154970747,"registered":1617070342,"eligible":15517179335},
-      {"name":"HSBC BANK USA","prev":21100578123,"received":0,"withdrawn":0,"net":63550200,"adj":0,"total":21100678123,"registered":3377478550,"eligible":17729449783},
-      {"name":"INTL DEPOSITORY SVCS DELAWARE","prev":2885641844,"received":0,"withdrawn":0,"net":0,"adj":0,"total":2885641844,"registered":2795125551,"eligible":2885641844},
-      {"name":"JP MORGAN CHASE BANK NA","prev":117511095553,"received":0,"withdrawn":0,"net":0,"adj":0,"total":117511095553,"registered":11981013970,"eligible":135564070583},
-      {"name":"LOOMIS INTERNATIONAL LLC","prev":28892609765,"received":0,"withdrawn":0,"net":0,"adj":0,"total":28892609765,"registered":4484009017,"eligible":24508600716},
-      {"name":"MANFRA TORDELLA & BROOKES","prev":13158383530,"received":1415221956,"withdrawn":1415221935,"net":21,"adj":0,"total":11715161564,"registered":5117518057,"eligible":15383383530},
-      {"name":"STONEX PRECIOUS METALS LLC","prev":7892525630,"received":0,"withdrawn":0,"net":-4991440,"adj":7921330,"total":7892929920,"registered":6215095460,"eligible":1879220330}
-    ]
+    "registered": 0,
+    "eligible": 0,
+    "combined": 0,
+    "received": 0,
+    "withdrawn": 0,
+    "net_change": 0,
+    "depositories": []
   },
   "silver": {
-    "registered": 253165706965, "eligible": 78889547669, "combined": 332055254634,
-    "received": 2003261570, "withdrawn": 1989368820, "net_change": 13892750,
-    "depositories": [
-      {"name":"BRINKS INC","prev":95000000,"received":500000,"withdrawn":200000,"net":300000,"adj":0,"total":95300000,"registered":40000000,"eligible":55300000},
-      {"name":"CNT DEPOSITORY INC","prev":85000000,"received":1000000,"withdrawn":500000,"net":500000,"adj":0,"total":85500000,"registered":35000000,"eligible":50500000},
-      {"name":"DELAWARE DEPOSITORY","prev":60000000,"received":300000,"withdrawn":800000,"net":-500000,"adj":0,"total":59500000,"registered":20000000,"eligible":39500000},
-      {"name":"HSBC BANK USA","prev":45000000,"received":200000,"withdrawn":489368820,"net":-289000,"adj":0,"total":44711000,"registered":15000000,"eligible":29711000},
-      {"name":"JP MORGAN CHASE BANK NA","prev":200000000,"received":0,"withdrawn":0,"net":0,"adj":0,"total":200000000,"registered":100000000,"eligible":100000000},
-      {"name":"LOOMIS INTERNATIONAL LLC","prev":80000000,"received":3261570,"withdrawn":0,"net":3261570,"adj":0,"total":83261570,"registered":30000000,"eligible":53261570},
-      {"name":"STONEX PRECIOUS METALS","prev":12000000,"received":0,"withdrawn":0,"net":0,"adj":0,"total":12000000,"registered":5000000,"eligible":7000000}
-    ]
+    "registered": 0,
+    "eligible": 0,
+    "combined": 0,
+    "received": 0,
+    "withdrawn": 0,
+    "net_change": 0,
+    "depositories": []
   }
 }

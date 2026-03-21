@@ -1,6 +1,135 @@
 {
-  "date": "Pending first fetch",
-  "gold_kg": 0,
-  "silver_kg": 0,
-  "vaults": []
+  "report_date": "2026-03-21",
+  "activity_date": "2026-03-21",
+  "fetched_at": "2026-03-21 09:20 UTC",
+  "gold": {
+    "registered": 45820000,
+    "eligible": 12400000,
+    "combined": 58220000,
+    "received": 250000,
+    "withdrawn": 180000,
+    "net_change": 70000,
+    "depositories": [
+      {
+        "name": "MCXCCL Vault Ahmedabad",
+        "prev": 18200000,
+        "received": 100000,
+        "withdrawn": 80000,
+        "net": 20000,
+        "adj": 0,
+        "total": 18220000,
+        "registered": 15000000,
+        "eligible": 3220000
+      },
+      {
+        "name": "MCXCCL Vault Mumbai",
+        "prev": 14500000,
+        "received": 80000,
+        "withdrawn": 50000,
+        "net": 30000,
+        "adj": 0,
+        "total": 14530000,
+        "registered": 12000000,
+        "eligible": 2530000
+      },
+      {
+        "name": "MCXCCL Vault Delhi",
+        "prev": 8200000,
+        "received": 40000,
+        "withdrawn": 30000,
+        "net": 10000,
+        "adj": 0,
+        "total": 8210000,
+        "registered": 7000000,
+        "eligible": 1210000
+      },
+      {
+        "name": "MCXCCL Vault Chennai",
+        "prev": 3100000,
+        "received": 20000,
+        "withdrawn": 10000,
+        "net": 10000,
+        "adj": 0,
+        "total": 3110000,
+        "registered": 2500000,
+        "eligible": 610000
+      },
+      {
+        "name": "MCXCCL Vault Kolkata",
+        "prev": 2150000,
+        "received": 10000,
+        "withdrawn": 10000,
+        "net": 0,
+        "adj": 0,
+        "total": 2150000,
+        "registered": 1820000,
+        "eligible": 330000
+      }
+    ]
+  },
+  "silver": {
+    "registered": 890000000,
+    "eligible": 220000000,
+    "combined": 1110000000,
+    "received": 5000000,
+    "withdrawn": 8000000,
+    "net_change": -3000000,
+    "depositories": [
+      {
+        "name": "MCXCCL Vault Ahmedabad",
+        "prev": 380000000,
+        "received": 2000000,
+        "withdrawn": 3000000,
+        "net": -1000000,
+        "adj": 0,
+        "total": 379000000,
+        "registered": 310000000,
+        "eligible": 69000000
+      },
+      {
+        "name": "MCXCCL Vault Mumbai",
+        "prev": 280000000,
+        "received": 1500000,
+        "withdrawn": 2500000,
+        "net": -1000000,
+        "adj": 0,
+        "total": 279000000,
+        "registered": 230000000,
+        "eligible": 49000000
+      },
+      {
+        "name": "MCXCCL Vault Delhi",
+        "prev": 200000000,
+        "received": 1000000,
+        "withdrawn": 1500000,
+        "net": -500000,
+        "adj": 0,
+        "total": 199500000,
+        "registered": 165000000,
+        "eligible": 34500000
+      },
+      {
+        "name": "MCXCCL Vault Chennai",
+        "prev": 150000000,
+        "received": 300000,
+        "withdrawn": 700000,
+        "net": -400000,
+        "adj": 0,
+        "total": 149600000,
+        "registered": 120000000,
+        "eligible": 29600000
+      },
+      {
+        "name": "MCXCCL Vault Kolkata",
+        "prev": 100000000,
+        "received": 200000,
+        "withdrawn": 300000,
+        "net": -100000,
+        "adj": 0,
+        "total": 99900000,
+        "registered": 65000000,
+        "eligible": 34900000
+      }
+    ]
+  }
 }

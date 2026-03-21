@@ -1,72 +1,104 @@
 {
   "date": "03/20/2026",
-  "contract": "MARCH 2026 COMEX COPPER FUTURES",
-  "settlement": "5.342500000",
+  "contract": "--",
+  "settlement": "1,424.800000000",
   "delivery_date": "03/24/2026",
-  "fetched_at": "2026-03-21 08:49 UTC",
+  "fetched_at": "2026-03-21 09:20 UTC",
   "gold": {
-    "contract": "MARCH 2026 COMEX COPPER FUTURES",
-    "settlement": "5.342500000",
-    "date": "03/20/2026",
-    "delivery_date": "03/24/2026",
-    "total_issued": 0,
-    "total_stopped": 0,
-    "mtd": 0,
-    "firms": []
-  },
-  "silver": {
-    "total_issued": 2140,
-    "total_stopped": 740,
-    "mtd": 10526,
+    "total_issued": 749,
+    "total_stopped": 749,
+    "mtd": 12532,
     "firms": [
       {
-        "id": "023",
-        "org": "H",
-        "name": "JP MORGAN CHASE BANK",
-        "issued": 1200,
-        "stopped": 0
-      },
-      {
-        "id": "099",
-        "org": "H",
-        "name": "DEUTSCHE BANK AG",
-        "issued": 450,
-        "stopped": 0
-      },
-      {
-        "id": "323",
-        "org": "H",
-        "name": "HSBC",
-        "issued": 0,
-        "stopped": 380
-      },
-      {
-        "id": "363",
+        "id": "686",
         "org": "C",
-        "name": "WELLS FARGO SECURITI",
-        "issued": 310,
-        "stopped": 0
+        "name": "STONEX FINANCIAL INC",
+        "issued": 10,
+        "stopped": 1
       },
       {
-        "id": "555",
+        "id": "905",
         "org": "C",
-        "name": "BNP PARIBAS SEC CORP",
-        "issued": 0,
-        "stopped": 210
+        "name": "ADM",
+        "issued": 9,
+        "stopped": 3
       },
       {
-        "id": "624",
-        "org": "H",
-        "name": "BOFA SECURITIES",
-        "issued": 0,
-        "stopped": 150
+        "id": "104",
+        "org": "C",
+        "name": "MIZUHO SECURITIES US",
+        "issued": 894,
+        "stopped": 1
       },
       {
-        "id": "880",
-        "org": "H",
-        "name": "CITIGROUP",
-        "issued": 180,
-        "stopped": 0
+        "id": "132",
+        "org": "C",
+        "name": "SG AMERICAS",
+        "issued": 111,
+        "stopped": 3
+      },
+      {
+        "id": "152",
+        "org": "C",
+        "name": "DORMAN TRADING, LLC",
+        "issued": 18,
+        "stopped": 43
+      },
+      {
+        "id": "159",
+        "org": "C",
+        "name": "MAREX CAPITAL MARKET",
+        "issued": 54,
+        "stopped": 108
+      },
+      {
+        "id": "365",
+        "org": "C",
+        "name": "MAREX CAPITAL MARKET",
+        "issued": 12,
+        "stopped": 3
+      },
+      {
+        "id": "686",
+        "org": "C",
+        "name": "STONEX FINANCIAL INC",
+        "issued": 202,
+        "stopped": 555
+      },
+      {
+        "id": "690",
+        "org": "C",
+        "name": "ABN AMRO CLR USA LLC",
+        "issued": 15,
+        "stopped": 59
+      },
+      {
+        "id": "732",
+        "org": "C",
+        "name": "RBC CAP MARKETS",
+        "issued": 32,
+        "stopped": 34
+      }
+    ]
+  },
+  "silver": {
+    "total_issued": 1,
+    "total_stopped": 1,
+    "mtd": 14454,
+    "firms": [
+      {
+        "id": "737",
+        "org": "C",
+        "name": "ADVANTAGE FUTURES",
+        "issued": 44,
+        "stopped": 80
+      },
+      {
+        "id": "905",
+        "org": "C",
+        "name": "ADM",
+        "issued": 3,
+        "stopped": 101
       }
     ]
   }
