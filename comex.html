@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>COMEX Delivery — Datastream Helix</title>
+  <style>
+    :root { --accent: #FFD700; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    body { background: #0d0d0d; color: #f0f0f0; padding: 14px; }
+    .container { max-width: 960px; margin: auto; }
+
+    h2 { text-align: center; color: var(--accent); font-size: 1.3em; margin-bottom: 3px; }
+    .subtitle { text-align: center; color: #666; font-size: 0.76em; margin-bottom: 12px; }
+
+    /* Metal Toggle */
+    .metal-switch { display: flex; justify-content: center; margin-bottom: 12px; }
+    .mbtn { padding: 8px 28px; cursor: pointer; font-size: 0.9em; font-weight: bold;
+            border: 2px solid #333; background: #1a1a1a; color: #777; transition: all 0.2s; }
+    .mbtn:first-child { border-radius: 7px 0 0 7px; }
+    .mbtn:last-child  { border-radius: 0 7px 7px 0; }
+    .mbtn.gold.active   { background: #FFD700; color: #000; border-color: #FFD700; }
+    .mbtn.silver.active { background: #C0C0C0; color: #000; border-color: #C0C0C0; }
+
+    /* Info bar */
+    .info-bar { background: #141414; border: 1px solid #2a2a2a; border-radius: 6px;
+                padding: 8px 14px; margin-bottom: 12px; font-size: 0.78em; color: #aaa;
+                display: flex; flex-wrap: wrap; gap: 14px; }
+    .info-bar b { color: var(--accent); }
+
+    /* Signal boxes */
+    .sig-box { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; justify-content: center; }
+    .sig-card { flex: 1; min-width: 120px; padding: 11px; border-radius: 7px; text-align: center; }
+    .sig-card .lbl { font-size: 0.68em; color: #888; margin-bottom: 3px; }
+    .sig-card .val { font-size: 1.3em; font-weight: bold; }
+    .sig-card.red    { background: #1a0808; border: 1px solid #ff6b6b; }
+    .sig-card.green  { background: #081a08; border: 1px solid #51cf66; }
+    .sig-card.yellow { background: #1a1a08; border: 1px solid var(--accent); }
+    .sig-card.blue   { background: #080d1a; border: 1px solid #74c0fc; }
+
+    /* Signal Banner */
+    .banner { border-radius: 7px; padding: 10px 14px; margin-bottom: 12px;
+              display: flex; align-items: center; justify-content: space-between;
+              flex-wrap: wrap; gap: 8px; }
+    .banner.bullish { background: #081a08; border: 1px solid #51cf66; }
+    .banner.bearish { background: #1a0808; border: 1px solid #ff6b6b; }
+    .banner.neutral { background: #1a1a08; border: 1px solid #FFD700; }
+    .banner-title { font-size: 1em; font-weight: bold; }
+    .banner-desc  { font-size: 0.75em; color: #bbb; margin-top: 2px; }
+    .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+    .badge { padding: 3px 10px; border-radius: 10px; font-size: 0.72em; font-weight: bold; }
+    .badge.red    { background: #ff6b6b22; color: #ff6b6b; border: 1px solid #ff6b6b; }
+    .badge.green  { background: #51cf6622; color: #51cf66; border: 1px solid #51cf66; }
+    .badge.yellow { background: #FFD70022; color: #FFD700; border: 1px solid #FFD700; }
+
+    /* Tabs */
+    .tabs { display: flex; gap: 7px; margin-bottom: 11px; justify-content: center; flex-wrap: wrap; }
+    .tab { padding: 6px 16px; background: #1a1a1a; border: 1px solid #333; border-radius: 6px;
+           cursor: pointer; color: #888; font-size: 0.83em; transition: all 0.2s; }
+    .tab.active { background: var(--accent); color: #000; font-weight: bold; border-color: var(--accent); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.82em; }
+    th { background: #181818; color: var(--accent); padding: 8px 10px; text-align: left;
+         border-bottom: 2px solid var(--accent); }
+    td { padding: 7px 10px; border-bottom: 1px solid #1e1e1e; }
+    tr:hover td { background: #181818; }
+    .issued  { color: #ff6b6b; font-weight: bold; }
+    .stopped { color: #51cf66; font-weight: bold; }
+    .neg { color: #ff6b6b; }
+    .pos { color: #51cf66; }
+    .total-row td { background: #181818; font-weight: bold; border-top: 2px solid #333; }
+
+    .sec-title { font-size: 0.8em; font-weight: bold; color: var(--accent);
+                 text-transform: uppercase; letter-spacing: 1px; margin: 12px 0 7px; }
+
+    /* Reload button */
+    .reload-btn { display: block; margin: 12px auto 0; padding: 8px 24px;
+                  background: #1a1a1a; border: 1px solid var(--accent); border-radius: 6px;
+                  color: var(--accent); font-size: 0.82em; cursor: pointer; transition: all 0.2s; }
+    .reload-btn:hover { background: var(--accent); color: #000; }
+
+    .status { text-align: center; color: #555; font-size: 0.72em; margin-top: 8px; }
+    .note-box { margin-top: 10px; padding: 10px 13px; background: #141414; border-radius: 6px;
+                border-left: 3px solid var(--accent); color: #888; font-size: 0.74em; line-height: 1.6; }
+    @media(max-width:600px){ th,td{ padding:6px 7px; font-size:0.76em; } }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h2>⚡ COMEX Metal Delivery Notices</h2>
+  <div class="subtitle" id="last-update">Loading from datastream-helix/data/...</div>
+
+  <div class="metal-switch">
+    <button class="mbtn gold active" onclick="switchMetal('gold')">🏅 GOLD</button>
+    <button class="mbtn silver" onclick="switchMetal('silver')">🥈 SILVER</button>
+  </div>
+
+  <div class="info-bar" id="info-bar">
+    <span><b>Exchange:</b> COMEX</span>
+    <span><b>Contract:</b> <span id="contract">--</span></span>
+    <span><b>Settlement:</b> <span id="settlement">--</span></span>
+    <span><b>Delivery Date:</b> <span id="deliv-date">--</span></span>
+    <span><b>Report Date:</b> <span id="rep-date">--</span></span>
+  </div>
+
+  <div class="sig-box">
+    <div class="sig-card red">
+      <div class="lbl">Total Issued</div>
+      <div class="val issued" id="total-issued">--</div>
+    </div>
+    <div class="sig-card green">
+      <div class="lbl">Total Stopped</div>
+      <div class="val stopped" id="total-stopped">--</div>
+    </div>
+    <div class="sig-card yellow">
+      <div class="lbl">Net</div>
+      <div class="val" id="net-val">--</div>
+    </div>
+    <div class="sig-card blue">
+      <div class="lbl">Month to Date</div>
+      <div class="val" style="color:#74c0fc" id="mtd-val">--</div>
+    </div>
+  </div>
+
+  <div class="banner neutral" id="sig-banner">
+    <div>
+      <div class="banner-title" id="sig-title">Calculating signal...</div>
+      <div class="banner-desc" id="sig-desc">Loading delivery data...</div>
+    </div>
+    <div class="badges" id="sig-badges"></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('daily')">Daily Notices</div>
+    <div class="tab" onclick="showTab('mtd')">Month to Date</div>
+    <div class="tab" onclick="showTab('guide')">Signal Guide</div>
+  </div>
+
+  <div id="tab-daily">
+    <div class="sec-title" id="daily-title">Daily Delivery Notices — Firm Breakdown</div>
+    <table>
+      <thead><tr>
+        <th>Firm ID</th><th>Org</th><th>Firm Name</th>
+        <th class="issued">Issued</th><th class="stopped">Stopped</th><th>Net</th>
+      </tr></thead>
+      <tbody id="daily-tbody">
+        <tr><td colspan="6" style="text-align:center;padding:18px;color:#555">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="tab-mtd" style="display:none">
+    <div class="sec-title">MTD Cumulative Notices</div>
+    <table>
+      <thead><tr>
+        <th>Firm ID</th><th>Org</th><th>Firm Name</th>
+        <th class="issued">Issued</th><th class="stopped">Stopped</th><th>Net</th>
+      </tr></thead>
+      <tbody id="mtd-tbody">
+        <tr><td colspan="6" style="text-align:center;padding:18px;color:#555">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="tab-guide" style="display:none">
+    <div class="sec-title">Signal Guide</div>
+    <table>
+      <tr><th>Term</th><th>Meaning</th><th>Signal</th></tr>
+      <tr><td><span class="issued">Issued</span></td>
+          <td>Firm delivering physical metal to exchange</td>
+          <td><span class="badge red">↓ Bearish</span></td></tr>
+      <tr><td><span class="stopped">Stopped</span></td>
+          <td>Firm taking physical delivery from exchange</td>
+          <td><span class="badge green">↑ Bullish</span></td></tr>
+      <tr><td><b>Stopped &gt; Issued</b></td>
+          <td>More demand than supply</td>
+          <td><span class="badge green">Bullish</span></td></tr>
+      <tr><td><b>Issued &gt; Stopped</b></td>
+          <td>More supply than demand</td>
+          <td><span class="badge red">Bearish</span></td></tr>
+      <tr><td><b>ORG: H</b></td><td>House — bank's own desk</td><td>Proprietary</td></tr>
+      <tr><td><b>ORG: C</b></td><td>Customer — client orders</td><td>Client flow</td></tr>
+    </table>
+    <div class="note-box">
+      <b style="color:var(--accent)">Source:</b> CME MetalsIssuesAndStopsReport.pdf (fetched daily by GitHub Actions at 8:30 AM IST)<br>
+      <b style="color:var(--accent)">Update:</b> CME publishes after market close US ET. Data in JSON updated automatically next morning IST.<br>
+      <b style="color:var(--accent)">MTD:</b> Month-to-date cumulative from CME MetalsIssuesAndStopsMTDReport.pdf
+    </div>
+  </div>
+
+  <button class="reload-btn" onclick="loadData()">🔄 Reload Latest Data</button>
+  <div class="status" id="status-msg">Ready</div>
+
+</div>
+<script>
+let metal = 'gold';
+let globalData = null;
+
+function setCSSAccent(m){
+  document.documentElement.style.setProperty('--accent', m==='gold'?'#FFD700':'#C0C0C0');
+}
+function showTab(t){
+  ['daily','mtd','guide'].forEach(x=>{
+    document.getElementById('tab-'+x).style.display = x===t?'block':'none';
+  });
+  document.querySelectorAll('.tab').forEach((el,i)=>{
+    el.classList.toggle('active',['daily','mtd','guide'][i]===t);
+  });
+}
+function switchMetal(m){
+  metal=m; setCSSAccent(m);
+  document.querySelector('.mbtn.gold').classList.toggle('active',m==='gold');
+  document.querySelector('.mbtn.silver').classList.toggle('active',m==='silver');
+  if(globalData) renderMetal(globalData, m);
+}
+function fmt(n){ return n!=null ? Number(n).toLocaleString('en-IN') : '--'; }
+
+function calcSignal(issued, stopped, mtd){
+  const net = issued - stopped;
+  if(stopped > issued && net < -30)
+    return { cls:'bullish', title:'🟢 BULLISH — Strong Demand',
+      desc:'More metal being taken (Stopped) than delivered (Issued). Demand exceeds supply.',
+      badges:'<span class="badge green">Stopped &gt; Issued</span><span class="badge green">Demand ↑</span>' };
+  if(issued > stopped && net > 30)
+    return { cls:'bearish', title:'🔴 BEARISH — Supply Pressure',
+      desc:'More metal being delivered (Issued) than taken (Stopped). Supply exceeds demand.',
+      badges:'<span class="badge red">Issued &gt; Stopped</span><span class="badge red">Supply ↑</span>' };
+  return { cls:'neutral', title:'🟡 NEUTRAL — Balanced',
+    desc:'Issued and Stopped are roughly equal. No strong directional signal.',
+    badges:'<span class="badge yellow">Balanced</span>' };
+}
+
+function buildRows(firms, tbodyId){
+  const tbody = document.getElementById(tbodyId);
+  if(!firms || firms.length===0){
+    tbody.innerHTML='<tr><td colspan="6" style="text-align:center;padding:14px;color:#555">No firm data available</td></tr>';
+    return;
+  }
+  let tI=0,tS=0;
+  tbody.innerHTML = firms.map(f=>{
+    const net=f.issued-f.stopped; tI+=f.issued; tS+=f.stopped;
+    return `<tr>
+      <td>${f.id||'--'}</td><td>${f.org||'--'}</td><td>${f.name||'--'}</td>
+      <td class="issued">${f.issued||''}</td>
+      <td class="stopped">${f.stopped||''}</td>
+      <td class="${net>=0?'neg':'pos'}">${net!==0?(net>0?'+'+net:net):'—'}</td>
+    </tr>`;
+  }).join('')+
+  `<tr class="total-row">
+    <td colspan="3"><b>TOTAL</b></td>
+    <td class="issued"><b>${tI}</b></td>
+    <td class="stopped"><b>${tS}</b></td>
+    <td class="${(tI-tS)>=0?'neg':'pos'}"><b>${tI-tS>0?'+':''}${tI-tS}</b></td>
+  </tr>`;
+}
+
+function renderMetal(data, m){
+  const d = data[m];
+  if(!d){ document.getElementById('status-msg').textContent='No data for '+m; return; }
+  document.getElementById('contract').textContent   = data.contract||'--';
+  document.getElementById('settlement').textContent = data.settlement||'--';
+  document.getElementById('deliv-date').textContent = data.delivery_date||'--';
+  document.getElementById('rep-date').textContent   = data.date||'--';
+  document.getElementById('total-issued').textContent  = fmt(d.total_issued);
+  document.getElementById('total-stopped').textContent = fmt(d.total_stopped);
+  const net = (d.total_issued||0)-(d.total_stopped||0);
+  const netEl = document.getElementById('net-val');
+  netEl.textContent = (net>=0?'+':'')+fmt(net);
+  netEl.className='val '+(net>0?'issued':'stopped');
+  document.getElementById('mtd-val').textContent = fmt(d.mtd);
+  const sig = calcSignal(d.total_issued||0, d.total_stopped||0, d.mtd||0);
+  const banner = document.getElementById('sig-banner');
+  banner.className='banner '+sig.cls;
+  document.getElementById('sig-title').textContent = sig.title;
+  document.getElementById('sig-desc').textContent  = sig.desc;
+  document.getElementById('sig-badges').innerHTML  = sig.badges;
+  buildRows(d.firms||[], 'daily-tbody');
+  buildRows(d.firms||[], 'mtd-tbody');
+  document.getElementById('daily-title').textContent =
+    'Daily Delivery Notices — '+(m==='gold'?'Gold':'Silver')+' Firm Breakdown';
+  document.getElementById('last-update').textContent =
+    'Last fetched: '+(data.fetched_at||data.date||'Unknown')+' | Source: CME Group';
+}
+
+async function loadData(){
+  document.getElementById('status-msg').textContent = '⏳ Loading...';
+  document.getElementById('reload-btn') && (document.querySelector('.reload-btn').textContent='⏳ Loading...');
+  try {
+    const r = await fetch('data/comex_delivery.json?t='+Date.now());
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    globalData = await r.json();
+    renderMetal(globalData, metal);
+    document.getElementById('status-msg').textContent =
+      '✅ Loaded at '+new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})+' IST';
+  } catch(e){
+    document.getElementById('status-msg').textContent = '⚠️ Could not load data: '+e.message;
+    console.error(e);
+  }
+  document.querySelector('.reload-btn').textContent='🔄 Reload Latest Data';
+}
+
+setCSSAccent('gold');
+loadData();
+</script>
+</body>
+</html>
