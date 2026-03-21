@@ -1,0 +1,36 @@
+name: Daily Data Fetch
+
+on:
+  schedule:
+    - cron: '0 3 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests tabula-py pandas openpyxl
+
+      - name: Run fetch script
+        run: python scripts/fetch_data.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "DataBot"
+          git config user.email "bot@datastream-helix.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "Update $(date '+%Y-%m-%d %H:%M UTC')"
+          git push
