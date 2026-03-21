@@ -1,0 +1,14 @@
+{
+  "date": "Pending first fetch",
+  "contract": "COMEX GOLD FUTURES",
+  "settlement": "0",
+  "delivery_date": "-",
+  "gold": {
+    "total_issued": 0, "total_stopped": 0, "mtd": 0,
+    "firms": []
+  },
+  "silver": {
+    "total_issued": 0, "total_stopped": 0, "mtd": 0,
+    "firms": []
+  }
+}
