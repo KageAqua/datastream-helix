@@ -2,13 +2,15 @@ name: Fetch Market Data
 
 on:
   schedule:
-    - cron: '20 9 * * 1-5'   # 9:20 AM UTC = 2:50 PM IST, weekdays only
-    - cron: '50 3 * * 1-5'   # 3:50 AM UTC = 9:20 AM IST, weekdays only
-  workflow_dispatch:           # Manual trigger button in Actions tab
+    - cron: '20 9 * * 1-5'
+    - cron: '50 3 * * 1-5'
+  workflow_dispatch:
 
 jobs:
   fetch:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     permissions:
       contents: write
@@ -23,10 +25,23 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install --upgrade pip
+          pip install requests pandas "xlrd==1.2.0" openpyxl lxml beautifulsoup4 pdfplumber
 
       - name: Run fetch script
-        run: python scripts/fetch_data.py
+        run: python scripts/fetch_data.py 2>&1 | tee fetch_log.txt
+
+      - name: Show log
+        if: always()
+        run: cat fetch_log.txt
+
+      - name: Upload log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fetch-log
+          path: fetch_log.txt
 
       - name: Commit and push data
         run: |
