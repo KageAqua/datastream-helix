@@ -1,14 +1,73 @@
 {
-  "date": "Pending first fetch",
-  "contract": "COMEX GOLD FUTURES",
-  "settlement": "0",
-  "delivery_date": "-",
+  "date": "03/20/2026",
+  "contract": "MARCH 2026 COMEX COPPER FUTURES",
+  "settlement": "5.342500000",
+  "delivery_date": "03/24/2026",
+  "fetched_at": "2026-03-21 08:49 UTC",
   "gold": {
-    "total_issued": 0, "total_stopped": 0, "mtd": 0,
+    "contract": "MARCH 2026 COMEX COPPER FUTURES",
+    "settlement": "5.342500000",
+    "date": "03/20/2026",
+    "delivery_date": "03/24/2026",
+    "total_issued": 0,
+    "total_stopped": 0,
+    "mtd": 0,
     "firms": []
   },
   "silver": {
-    "total_issued": 0, "total_stopped": 0, "mtd": 0,
-    "firms": []
+    "total_issued": 2140,
+    "total_stopped": 740,
+    "mtd": 10526,
+    "firms": [
+      {
+        "id": "023",
+        "org": "H",
+        "name": "JP MORGAN CHASE BANK",
+        "issued": 1200,
+        "stopped": 0
+      },
+      {
+        "id": "099",
+        "org": "H",
+        "name": "DEUTSCHE BANK AG",
+        "issued": 450,
+        "stopped": 0
+      },
+      {
+        "id": "323",
+        "org": "H",
+        "name": "HSBC",
+        "issued": 0,
+        "stopped": 380
+      },
+      {
+        "id": "363",
+        "org": "C",
+        "name": "WELLS FARGO SECURITI",
+        "issued": 310,
+        "stopped": 0
+      },
+      {
+        "id": "555",
+        "org": "C",
+        "name": "BNP PARIBAS SEC CORP",
+        "issued": 0,
+        "stopped": 210
+      },
+      {
+        "id": "624",
+        "org": "H",
+        "name": "BOFA SECURITIES",
+        "issued": 0,
+        "stopped": 150
+      },
+      {
+        "id": "880",
+        "org": "H",
+        "name": "CITIGROUP",
+        "issued": 180,
+        "stopped": 0
+      }
+    ]
   }
 }
